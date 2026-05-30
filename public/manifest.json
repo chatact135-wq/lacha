@@ -1,0 +1,9 @@
+{
+  "name": "La Cha Cha Digital Menu",
+  "short_name": "La Cha Cha",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7f4",
+  "theme_color": "#b41421",
+  "icons": []
+}
