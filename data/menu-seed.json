@@ -8,126 +8,126 @@
   },
   "categories": [
     {
-      "id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "id": "750b755f-0600-4de9-80fc-673335056ad7",
       "name_en": "Breakfast",
       "name_ar": "الإفطار",
       "sort_order": 1,
       "is_visible": true
     },
     {
-      "id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "name_en": "What’s New",
       "name_ar": "الجديد",
       "sort_order": 2,
       "is_visible": true
     },
     {
-      "id": "476ae997-c7cf-423a-90d3-9180ed0dac94",
+      "id": "c6b13fd1-e3ff-4ef2-8678-747537463ca5",
       "name_en": "Fresh Start",
       "name_ar": "بداية منعشة",
       "sort_order": 3,
       "is_visible": true
     },
     {
-      "id": "7ed71af2-ee3a-4a95-b6e3-180777f10367",
+      "id": "9b46b8ac-c912-40d8-8dd0-b11e71aedfb3",
       "name_en": "Cha Cha Casserole",
       "name_ar": "كاسرول تشا تشا",
       "sort_order": 4,
       "is_visible": true
     },
     {
-      "id": "c0063f85-bbfc-4082-b446-ce18f576ec5d",
+      "id": "7e0c4069-949b-4c69-a36b-835b4fba3ae5",
       "name_en": "Sandwiches and Rolls",
       "name_ar": "السندويشات والرولات",
       "sort_order": 5,
       "is_visible": true
     },
     {
-      "id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "name_en": "Crunch and Sear Burgers",
       "name_ar": "برجر كرنش آند سير",
       "sort_order": 6,
       "is_visible": true
     },
     {
-      "id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "name_en": "Seafood Lover",
       "name_ar": "عشاق المأكولات البحرية",
       "sort_order": 7,
       "is_visible": true
     },
     {
-      "id": "ec16708e-15fb-4636-9252-e1a61403d497",
+      "id": "f5d055f6-4ef8-4a20-90b8-05740dc6a33c",
       "name_en": "Chef’s Grill Selection",
       "name_ar": "اختيارات الشيف من المشويات",
       "sort_order": 8,
       "is_visible": true
     },
     {
-      "id": "66aa7a26-ae08-4bc9-9b27-4f61c66cc335",
+      "id": "9e10a5f7-686a-4604-b5bb-8cce9e0ecff7",
       "name_en": "Sweet Endings",
       "name_ar": "حلويات",
       "sort_order": 9,
       "is_visible": true
     },
     {
-      "id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "name_en": "Beverages",
       "name_ar": "المشروبات",
       "sort_order": 10,
       "is_visible": true
     },
     {
-      "id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "name_en": "From the Moroccan Table",
       "name_ar": "من المائدة المغربية",
       "sort_order": 11,
       "is_visible": true
     },
     {
-      "id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "name_en": "From the Moroccan Oven",
       "name_ar": "من الفرن المغربي",
       "sort_order": 12,
       "is_visible": true
     },
     {
-      "id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "name_en": "Italian Corner",
       "name_ar": "الركن الإيطالي",
       "sort_order": 13,
       "is_visible": true
     },
     {
-      "id": "84d96160-9ae2-4648-ae05-281fa315939f",
+      "id": "578a1fe7-036b-4948-82b1-764869f72535",
       "name_en": "The Big Melts Collection",
       "name_ar": "مجموعة الميلت الكبيرة",
       "sort_order": 14,
       "is_visible": true
     },
     {
-      "id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "name_en": "Loaded Collection",
       "name_ar": "مجموعة اللودد",
       "sort_order": 15,
       "is_visible": true
     },
     {
-      "id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "name_en": "Food Add-ons",
       "name_ar": "إضافات الطعام",
       "sort_order": 16,
       "is_visible": true
     },
     {
-      "id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "name_en": "Sauce Add-ons",
       "name_ar": "إضافات الصوص",
       "sort_order": 17,
       "is_visible": true
     },
     {
-      "id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "name_en": "Our Coffee",
       "name_ar": "قهوة لا تشا تشا",
       "sort_order": 18,
@@ -136,7 +136,7 @@
   ],
   "items": [
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Moroccan Style Shakshuka",
       "name_ar": "شكشوكة مغربية",
@@ -147,7 +147,7 @@
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "OG Moroccan Batbota",
       "name_ar": "بطبوط مغربي أو جي",
@@ -158,7 +158,7 @@
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Green Halloumi Crunch",
       "name_ar": "كرنش حلومي أخضر",
@@ -169,7 +169,7 @@
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Turkey and Potato Breakfast Roll",
       "name_ar": "رول إفطار تركي وبطاطا",
@@ -180,7 +180,7 @@
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Potato and Pesto Cheese Breakfast Roll",
       "name_ar": "رول إفطار بطاطا وجبن بيستو",
@@ -191,51 +191,51 @@
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Italian Breakfast Roll",
       "name_ar": "رول إفطار إيطالي",
       "price": 58.5,
-      "image_url": "/images/items/breakfast-italian-breakfast-roll.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Moroccan Breakfast Platter",
       "name_ar": "طبق إفطار مغربي",
       "price": 71.5,
-      "image_url": "/images/items/breakfast-moroccan-breakfast-platter.jpg",
+      "image_url": null,
       "sort_order": 7,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Blue Sky Oats Cereal",
       "name_ar": "Blue Sky Oats Cereal",
       "price": 47.0,
-      "image_url": "/images/items/breakfast-blue-sky-oats-cereal.jpg",
+      "image_url": null,
       "sort_order": 8,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "a728e80f-6d60-4f6c-9220-b190098bc87c",
+      "category_id": "750b755f-0600-4de9-80fc-673335056ad7",
       "category": "Breakfast",
       "name_en": "Peanut Butter and Berries Oats",
       "name_ar": "Peanut Butter and Berries Oats",
       "price": 47.0,
-      "image_url": "/images/items/breakfast-peanut-butter-and-berries-oats.jpg",
+      "image_url": null,
       "sort_order": 9,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "category_id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "category": "What’s New",
       "name_en": "Caramel Buffalo Tender",
       "name_ar": "تندر بافلو بالكراميل",
@@ -246,7 +246,7 @@
       "is_visible": true
     },
     {
-      "category_id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "category_id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "category": "What’s New",
       "name_en": "Chili Butter Crispy Shrimp",
       "name_ar": "روبيان كرسبي بزبدة التشيلي",
@@ -257,7 +257,7 @@
       "is_visible": true
     },
     {
-      "category_id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "category_id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "category": "What’s New",
       "name_en": "Arabic Melt Shawarma",
       "name_ar": "شاورما ميلت عربي",
@@ -268,7 +268,7 @@
       "is_visible": true
     },
     {
-      "category_id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "category_id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "category": "What’s New",
       "name_en": "Khaltat Rashid Wrap",
       "name_ar": "راب خلطة راشد",
@@ -279,29 +279,29 @@
       "is_visible": true
     },
     {
-      "category_id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "category_id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "category": "What’s New",
       "name_en": "Crunch Bomb Wrap",
       "name_ar": "راب كرنش بومب",
       "price": 49.0,
-      "image_url": "/images/items/what-s-new-crunch-bomb-wrap.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "95c53ada-5e48-4377-afbd-73bef21fb06f",
+      "category_id": "5bd20192-13cf-4c0b-b9fa-3ba8ffba66db",
       "category": "What’s New",
       "name_en": "Dynamite Shrimp",
       "name_ar": "دايناميت روبيان",
       "price": 59.0,
-      "image_url": "/images/items/what-s-new-dynamite-shrimp.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "476ae997-c7cf-423a-90d3-9180ed0dac94",
+      "category_id": "c6b13fd1-e3ff-4ef2-8678-747537463ca5",
       "category": "Fresh Start",
       "name_en": "La Cha Cha Salad",
       "name_ar": "سلطة لا تشا تشا",
@@ -312,40 +312,40 @@
       "is_visible": true
     },
     {
-      "category_id": "476ae997-c7cf-423a-90d3-9180ed0dac94",
+      "category_id": "c6b13fd1-e3ff-4ef2-8678-747537463ca5",
       "category": "Fresh Start",
       "name_en": "Fries",
       "name_ar": "Fries",
       "price": 16.0,
-      "image_url": "/images/items/fresh-start-fries.jpg",
+      "image_url": null,
       "sort_order": 2,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "476ae997-c7cf-423a-90d3-9180ed0dac94",
+      "category_id": "c6b13fd1-e3ff-4ef2-8678-747537463ca5",
       "category": "Fresh Start",
       "name_en": "Nashville Tender",
       "name_ar": "تندر ناشفيل",
       "price": 45.0,
-      "image_url": "/images/items/fresh-start-nashville-tender.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "476ae997-c7cf-423a-90d3-9180ed0dac94",
+      "category_id": "c6b13fd1-e3ff-4ef2-8678-747537463ca5",
       "category": "Fresh Start",
       "name_en": "Salad Maghribeia",
       "name_ar": "سلطة مغربية",
       "price": 15.0,
-      "image_url": "/images/items/fresh-start-salad-maghribeia.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "7ed71af2-ee3a-4a95-b6e3-180777f10367",
+      "category_id": "9b46b8ac-c912-40d8-8dd0-b11e71aedfb3",
       "category": "Cha Cha Casserole",
       "name_en": "Pesto Chicken Casserole",
       "name_ar": "كاسرول دجاج بالبيستو",
@@ -356,40 +356,40 @@
       "is_visible": true
     },
     {
-      "category_id": "7ed71af2-ee3a-4a95-b6e3-180777f10367",
+      "category_id": "9b46b8ac-c912-40d8-8dd0-b11e71aedfb3",
       "category": "Cha Cha Casserole",
       "name_en": "Italian Meatballs Casserole",
       "name_ar": "كاسرول كرات اللحم الإيطالية",
       "price": 71.0,
-      "image_url": "/images/items/cha-cha-casserole-italian-meatballs-casserole.jpg",
+      "image_url": null,
       "sort_order": 2,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "7ed71af2-ee3a-4a95-b6e3-180777f10367",
+      "category_id": "9b46b8ac-c912-40d8-8dd0-b11e71aedfb3",
       "category": "Cha Cha Casserole",
       "name_en": "Salmon And Seafood Casserole",
       "name_ar": "كاسرول سلمون ومأكولات بحرية",
       "price": 67.0,
-      "image_url": "/images/items/cha-cha-casserole-salmon-and-seafood-casserole.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "7ed71af2-ee3a-4a95-b6e3-180777f10367",
+      "category_id": "9b46b8ac-c912-40d8-8dd0-b11e71aedfb3",
       "category": "Cha Cha Casserole",
       "name_en": "Seafood Casserole",
       "name_ar": "كاسرول مأكولات بحرية",
       "price": 79.0,
-      "image_url": "/images/items/cha-cha-casserole-seafood-casserole.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "c0063f85-bbfc-4082-b446-ce18f576ec5d",
+      "category_id": "7e0c4069-949b-4c69-a36b-835b4fba3ae5",
       "category": "Sandwiches and Rolls",
       "name_en": "S-A Steak Sandwich",
       "name_ar": "ساندويتش ستيك S-A",
@@ -400,40 +400,40 @@
       "is_visible": true
     },
     {
-      "category_id": "c0063f85-bbfc-4082-b446-ce18f576ec5d",
+      "category_id": "7e0c4069-949b-4c69-a36b-835b4fba3ae5",
       "category": "Sandwiches and Rolls",
       "name_en": "Chicken Fajita Sandwich",
       "name_ar": "ساندويتش دجاج فاهيتا",
       "price": 49.0,
-      "image_url": "/images/items/sandwiches-and-rolls-chicken-fajita-sandwich.jpg",
+      "image_url": null,
       "sort_order": 2,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "c0063f85-bbfc-4082-b446-ce18f576ec5d",
+      "category_id": "7e0c4069-949b-4c69-a36b-835b4fba3ae5",
       "category": "Sandwiches and Rolls",
       "name_en": "DXB Steak Sandwich",
       "name_ar": "ساندويتش ستيك دبي",
       "price": 53.5,
-      "image_url": "/images/items/sandwiches-and-rolls-dxb-steak-sandwich.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "c0063f85-bbfc-4082-b446-ce18f576ec5d",
+      "category_id": "7e0c4069-949b-4c69-a36b-835b4fba3ae5",
       "category": "Sandwiches and Rolls",
       "name_en": "Pesto Avocado Schnitzel Sandwich",
       "name_ar": "ساندويتش شنيتزل أفوكادو وبيستو",
       "price": 55.45,
-      "image_url": "/images/items/sandwiches-and-rolls-pesto-avocado-schnitzel-sandwich.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "category_id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "category": "Crunch and Sear Burgers",
       "name_en": "Back to Classic Burger",
       "name_ar": "برجر باك تو كلاسيك",
@@ -444,7 +444,7 @@
       "is_visible": true
     },
     {
-      "category_id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "category_id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "category": "Crunch and Sear Burgers",
       "name_en": "The Moroco Crispy Burger",
       "name_ar": "برجر موروكو كرسبي",
@@ -455,7 +455,7 @@
       "is_visible": true
     },
     {
-      "category_id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "category_id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "category": "Crunch and Sear Burgers",
       "name_en": "100 Mile Wagyu Burger",
       "name_ar": "برجر واجيو 100 مايل",
@@ -466,7 +466,7 @@
       "is_visible": true
     },
     {
-      "category_id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "category_id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "category": "Crunch and Sear Burgers",
       "name_en": "Black Truffle Wagyu",
       "name_ar": "واجيو بالترافل الأسود",
@@ -477,7 +477,7 @@
       "is_visible": true
     },
     {
-      "category_id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "category_id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "category": "Crunch and Sear Burgers",
       "name_en": "Nashville Heat Burger",
       "name_ar": "برجر ناشفيل هيت",
@@ -488,7 +488,7 @@
       "is_visible": true
     },
     {
-      "category_id": "30c0dffd-dd1c-459a-8193-53c7629fac78",
+      "category_id": "0328cf1c-e309-4207-846d-cf115253cc01",
       "category": "Crunch and Sear Burgers",
       "name_en": "Ultimate Chicken Burger",
       "name_ar": "برجر دجاج ألتميت",
@@ -499,7 +499,7 @@
       "is_visible": true
     },
     {
-      "category_id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "category_id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "category": "Seafood Lover",
       "name_en": "Salsa Crispy Fish Fillet",
       "name_ar": "فيليه سمك كرسبي بالسالسا",
@@ -510,7 +510,7 @@
       "is_visible": true
     },
     {
-      "category_id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "category_id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "category": "Seafood Lover",
       "name_en": "Moroccan Fish Tagine",
       "name_ar": "طاجن سمك مغربي",
@@ -521,7 +521,7 @@
       "is_visible": true
     },
     {
-      "category_id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "category_id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "category": "Seafood Lover",
       "name_en": "Salmon Seafood Casserole",
       "name_ar": "كاسرول سلمون ومأكولات بحرية",
@@ -532,40 +532,40 @@
       "is_visible": true
     },
     {
-      "category_id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "category_id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "category": "Seafood Lover",
       "name_en": "The Shrimp Heat Different",
       "name_ar": "روبيان هيت ديفرنت",
       "price": 65.0,
-      "image_url": "/images/items/seafood-lover-the-shrimp-heat-different.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "category_id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "category": "Seafood Lover",
       "name_en": "Cilantro Grilled Salmon",
       "name_ar": "سلمون مشوي بالكزبرة",
       "price": 65.0,
-      "image_url": "/images/items/seafood-lover-cilantro-grilled-salmon.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "0798450d-2ed1-49c4-a560-f2241660e26c",
+      "category_id": "9437210a-6fe4-46b9-91f1-dd334a2d734b",
       "category": "Seafood Lover",
       "name_en": "Garlic Chimichurri Grilled Shrimp",
       "name_ar": "روبيان مشوي بالثوم والتشيميتشوري",
       "price": 72.0,
-      "image_url": "/images/items/seafood-lover-garlic-chimichurri-grilled-shrimp.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ec16708e-15fb-4636-9252-e1a61403d497",
+      "category_id": "f5d055f6-4ef8-4a20-90b8-05740dc6a33c",
       "category": "Chef’s Grill Selection",
       "name_en": "S-A Steak",
       "name_ar": "ستيك S-A",
@@ -576,7 +576,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ec16708e-15fb-4636-9252-e1a61403d497",
+      "category_id": "f5d055f6-4ef8-4a20-90b8-05740dc6a33c",
       "category": "Chef’s Grill Selection",
       "name_en": "Moroccan Grilled Chicken",
       "name_ar": "دجاج مغربي مشوي",
@@ -587,29 +587,29 @@
       "is_visible": true
     },
     {
-      "category_id": "ec16708e-15fb-4636-9252-e1a61403d497",
+      "category_id": "f5d055f6-4ef8-4a20-90b8-05740dc6a33c",
       "category": "Chef’s Grill Selection",
       "name_en": "Egg & Steak Perfection",
       "name_ar": "إج آند ستيك بيرفكشن",
       "price": 126.0,
-      "image_url": "/images/items/chef-s-grill-selection-egg-and-steak-perfection.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ec16708e-15fb-4636-9252-e1a61403d497",
+      "category_id": "f5d055f6-4ef8-4a20-90b8-05740dc6a33c",
       "category": "Chef’s Grill Selection",
       "name_en": "Peri Peri Grilled Chicken",
       "name_ar": "دجاج مشوي بيري بيري",
       "price": 55.5,
-      "image_url": "/images/items/chef-s-grill-selection-peri-peri-grilled-chicken.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "66aa7a26-ae08-4bc9-9b27-4f61c66cc335",
+      "category_id": "9e10a5f7-686a-4604-b5bb-8cce9e0ecff7",
       "category": "Sweet Endings",
       "name_en": "Kunafa with Cream and Cheese",
       "name_ar": "كنافة بالكريمة والجبن",
@@ -620,7 +620,7 @@
       "is_visible": true
     },
     {
-      "category_id": "66aa7a26-ae08-4bc9-9b27-4f61c66cc335",
+      "category_id": "9e10a5f7-686a-4604-b5bb-8cce9e0ecff7",
       "category": "Sweet Endings",
       "name_en": "Chocolate Cheese Kunafa",
       "name_ar": "كنافة شوكولاتة بالجبن",
@@ -631,7 +631,7 @@
       "is_visible": true
     },
     {
-      "category_id": "66aa7a26-ae08-4bc9-9b27-4f61c66cc335",
+      "category_id": "9e10a5f7-686a-4604-b5bb-8cce9e0ecff7",
       "category": "Sweet Endings",
       "name_en": "Signature Tiramissu",
       "name_ar": "تيراميسو سيغنتشر",
@@ -642,7 +642,7 @@
       "is_visible": true
     },
     {
-      "category_id": "66aa7a26-ae08-4bc9-9b27-4f61c66cc335",
+      "category_id": "9e10a5f7-686a-4604-b5bb-8cce9e0ecff7",
       "category": "Sweet Endings",
       "name_en": "Pistachio Matcha Tiramissu",
       "name_ar": "تيراميسو ماتشا بالفستق",
@@ -653,18 +653,18 @@
       "is_visible": true
     },
     {
-      "category_id": "66aa7a26-ae08-4bc9-9b27-4f61c66cc335",
+      "category_id": "9e10a5f7-686a-4604-b5bb-8cce9e0ecff7",
       "category": "Sweet Endings",
       "name_en": "Classic Tiramissu",
       "name_ar": "تيراميسو كلاسيك",
       "price": 29.0,
-      "image_url": "/images/items/sweet-endings-classic-tiramissu.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Midnight Blue Mojito",
       "name_ar": "موهيتو ميدنايت بلو",
@@ -675,7 +675,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Signature Cuban Mojito",
       "name_ar": "موهيتو كوبي سيغنتشر",
@@ -686,7 +686,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Island Heat Mojito",
       "name_ar": "موهيتو آيلاند هيت",
@@ -697,7 +697,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Strawberry Smooth Mojito",
       "name_ar": "موهيتو فراولة سموث",
@@ -708,7 +708,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Passion Bliss Juice",
       "name_ar": "عصير باشن بليس",
@@ -719,7 +719,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Hibiscus Iced Tea",
       "name_ar": "شاي كركديه مثلج",
@@ -730,7 +730,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Fresh Orange Juice",
       "name_ar": "عصير برتقال طازج",
@@ -741,7 +741,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Moroccan Tea",
       "name_ar": "شاي مغربي",
@@ -752,7 +752,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Still Water",
       "name_ar": "مياه عادية",
@@ -763,7 +763,7 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Sparkling Water",
       "name_ar": "مياه غازية",
@@ -774,84 +774,84 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Soda Zero",
       "name_ar": "Soda Zero",
       "price": 8.0,
-      "image_url": "/images/items/beverages-soda-zero.jpg",
+      "image_url": null,
       "sort_order": 11,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Pepsi 330ml",
       "name_ar": "Pepsi 330ml",
       "price": 8.0,
-      "image_url": "/images/items/beverages-pepsi-330ml.jpg",
+      "image_url": null,
       "sort_order": 12,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Sprite",
       "name_ar": "Sprite",
       "price": 8.0,
-      "image_url": "/images/items/beverages-sprite.jpg",
+      "image_url": null,
       "sort_order": 13,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Coca Cola 245ml",
       "name_ar": "Coca Cola 245ml",
       "price": 8.0,
-      "image_url": "/images/items/beverages-coca-cola-245ml.jpg",
+      "image_url": null,
       "sort_order": 14,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Kinza Cola",
       "name_ar": "Kinza Cola",
       "price": 12.0,
-      "image_url": "/images/items/beverages-kinza-cola.jpg",
+      "image_url": null,
       "sort_order": 15,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Kinza Lemon",
       "name_ar": "Kinza Lemon",
       "price": 12.0,
-      "image_url": "/images/items/beverages-kinza-lemon.jpg",
+      "image_url": null,
       "sort_order": 16,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Kinza Pomegranate",
       "name_ar": "كينزا رمان",
       "price": 12.0,
-      "image_url": "/images/items/beverages-kinza-pomegranate.jpg",
+      "image_url": null,
       "sort_order": 17,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Kinza Blackcurrant",
       "name_ar": "كينزا بلاك كرانت",
@@ -862,18 +862,18 @@
       "is_visible": true
     },
     {
-      "category_id": "ab9bb8c7-f5d1-4123-ac77-d85d85e47358",
+      "category_id": "8480b2bc-03ad-4e1c-8796-8b06c284a595",
       "category": "Beverages",
       "name_en": "Soft Drink",
       "name_ar": "مشروب غازي",
       "price": 8.0,
-      "image_url": "/images/items/beverages-soft-drink.jpg",
+      "image_url": null,
       "sort_order": 19,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Chicken Tajine with Olives",
       "name_ar": "طاجن دجاج بالزيتون",
@@ -884,7 +884,7 @@
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Harira Soup",
       "name_ar": "شوربة حريرة",
@@ -895,7 +895,7 @@
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Chicken Tajine with Vegetables and Olives",
       "name_ar": "طاجن دجاج بالخضار والزيتون",
@@ -906,7 +906,7 @@
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Tanjia Marrakeshia",
       "name_ar": "طنجية مراكشية",
@@ -917,7 +917,7 @@
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Tajine with Prunes",
       "name_ar": "طاجن بالبرقوق",
@@ -928,7 +928,7 @@
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Seafood Pastilla",
       "name_ar": "بسطيلة مأكولات بحرية",
@@ -939,7 +939,7 @@
       "is_visible": true
     },
     {
-      "category_id": "2729368a-3557-40d6-b734-11aa52f77e7f",
+      "category_id": "fae08e63-b2db-4576-aab9-4a7708b769e1",
       "category": "From the Moroccan Table",
       "name_en": "Chicken and Almond Pastilla",
       "name_ar": "بسطيلة دجاج ولوز",
@@ -950,7 +950,7 @@
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Moroccan Meloui",
       "name_ar": "ملوي مغربي",
@@ -961,7 +961,7 @@
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen with Beef",
       "name_ar": "مسمن باللحم",
@@ -972,7 +972,7 @@
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen BL Shahma",
       "name_ar": "مسمن بالشحمة",
@@ -983,7 +983,7 @@
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Moroccan Msemen",
       "name_ar": "مسمن مغربي",
@@ -994,73 +994,73 @@
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Moroccan Batbota [2pc]",
       "name_ar": "بطبوط مغربي [قطعتان]",
       "price": 14.0,
-      "image_url": "/images/items/from-the-moroccan-oven-moroccan-batbota-2pc.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen Cheesy Oman Crunch",
       "name_ar": "مسمن تشيزي عمان كرنش",
       "price": 38.0,
-      "image_url": "/images/items/from-the-moroccan-oven-msemen-cheesy-oman-crunch.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen Amlou & Date Bliss",
       "name_ar": "مسمن أملو وتمر",
       "price": 39.0,
-      "image_url": "/images/items/from-the-moroccan-oven-msemen-amlou-and-date-bliss.jpg",
+      "image_url": null,
       "sort_order": 7,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen Golden Honey Almond",
       "name_ar": "مسمن عسل ذهبي ولوز",
       "price": 38.0,
-      "image_url": "/images/items/from-the-moroccan-oven-msemen-golden-honey-almond.jpg",
+      "image_url": null,
       "sort_order": 8,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen Chocolate Kunafa Pistachio",
       "name_ar": "مسمن شوكولاتة كنافة وفستق",
       "price": 39.0,
-      "image_url": "/images/items/from-the-moroccan-oven-msemen-chocolate-kunafa-pistachio.jpg",
+      "image_url": null,
       "sort_order": 9,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "f98e988e-8dea-4978-910c-326796ad0052",
+      "category_id": "8c6d3c2a-b23c-42bc-a23f-4b167e14288c",
       "category": "From the Moroccan Oven",
       "name_en": "Msemen Green Morning",
       "name_ar": "مسمن جرين مورنينغ",
       "price": 39.0,
-      "image_url": "/images/items/from-the-moroccan-oven-msemen-green-morning.jpg",
+      "image_url": null,
       "sort_order": 10,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "category_id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "category": "Italian Corner",
       "name_en": "Quattro Creamy Pasta",
       "name_ar": "باستا كواترو كريمية",
@@ -1071,7 +1071,7 @@
       "is_visible": true
     },
     {
-      "category_id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "category_id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "category": "Italian Corner",
       "name_en": "Arrabiata Pasta",
       "name_ar": "باستا أرابياتا",
@@ -1082,51 +1082,51 @@
       "is_visible": true
     },
     {
-      "category_id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "category_id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "category": "Italian Corner",
       "name_en": "Truffle Pasta",
       "name_ar": "باستا ترافل",
       "price": 49.0,
-      "image_url": "/images/items/italian-corner-truffle-pasta.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "category_id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "category": "Italian Corner",
       "name_en": "Seafood Lemon Pasta",
       "name_ar": "باستا ليمون بالمأكولات البحرية",
       "price": 53.55,
-      "image_url": "/images/items/italian-corner-seafood-lemon-pasta.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "category_id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "category": "Italian Corner",
       "name_en": "The Pesto Chicken Pasta",
       "name_ar": "باستا دجاج بالبيستو",
       "price": 52.0,
-      "image_url": "/images/items/italian-corner-the-pesto-chicken-pasta.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "356222e4-1053-4f13-b3c3-498c1fac86d6",
+      "category_id": "3af25b54-0074-40ef-886c-0a26728967d7",
       "category": "Italian Corner",
       "name_en": "Steak Pasta",
       "name_ar": "باستا ستيك",
       "price": 55.65,
-      "image_url": "/images/items/italian-corner-steak-pasta.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "84d96160-9ae2-4648-ae05-281fa315939f",
+      "category_id": "578a1fe7-036b-4948-82b1-764869f72535",
       "category": "The Big Melts Collection",
       "name_en": "Angus BIG Melt",
       "name_ar": "أنجوس بيج ميلت",
@@ -1137,29 +1137,29 @@
       "is_visible": true
     },
     {
-      "category_id": "84d96160-9ae2-4648-ae05-281fa315939f",
+      "category_id": "578a1fe7-036b-4948-82b1-764869f72535",
       "category": "The Big Melts Collection",
       "name_en": "Crispy Big Melt Chicken",
       "name_ar": "كرسبي بيج ميلت دجاج",
       "price": 49.0,
-      "image_url": "/images/items/the-big-melts-collection-crispy-big-melt-chicken.jpg",
+      "image_url": null,
       "sort_order": 2,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "84d96160-9ae2-4648-ae05-281fa315939f",
+      "category_id": "578a1fe7-036b-4948-82b1-764869f72535",
       "category": "The Big Melts Collection",
       "name_en": "Big Melt Shrimp",
       "name_ar": "بيج ميلت روبيان",
       "price": 49.0,
-      "image_url": "/images/items/the-big-melts-collection-big-melt-shrimp.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Loaded Sweet Potato (Beef)",
       "name_ar": "بطاطا حلوة لودد باللحم",
@@ -1170,7 +1170,7 @@
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Loaded Sweet Potato (Chicken)",
       "name_ar": "بطاطا حلوة لودد بالدجاج",
@@ -1181,62 +1181,62 @@
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Loaded Sweet Potato (Vegetable)",
       "name_ar": "بطاطا حلوة لودد بالخضار",
       "price": 38.0,
-      "image_url": "/images/items/loaded-collection-loaded-sweet-potato-vegetable.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Italian Frites",
       "name_ar": "Italian Frites",
       "price": 26.25,
-      "image_url": "/images/items/loaded-collection-italian-frites.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Cheese, Bacon, and Pickles",
       "name_ar": "جبن وبيكن ومخلل",
       "price": 32.0,
-      "image_url": "/images/items/loaded-collection-cheese-bacon-and-pickles.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Loaded Nashville Fries",
       "name_ar": "بطاطس ناشفيل لودد",
       "price": 43.0,
-      "image_url": "/images/items/loaded-collection-loaded-nashville-fries.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "209b3a2d-9d87-4c10-82b9-4351403c519c",
+      "category_id": "f98e8258-87e5-4a54-9e35-fdccced310d1",
       "category": "Loaded Collection",
       "name_en": "Classic Loaded Fries",
       "name_ar": "بطاطس لودد كلاسيك",
       "price": 37.8,
-      "image_url": "/images/items/loaded-collection-classic-loaded-fries.jpg",
+      "image_url": null,
       "sort_order": 7,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Cheese",
       "name_ar": "Extra Cheese",
@@ -1247,7 +1247,7 @@
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Swiss Cheese",
       "name_ar": "Swiss Cheese",
@@ -1258,7 +1258,7 @@
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Parmesan Cheese",
       "name_ar": "Parmesan Cheese",
@@ -1269,7 +1269,7 @@
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Crispy Bacon",
       "name_ar": "Crispy Bacon",
@@ -1280,7 +1280,7 @@
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Caramelized Onion",
       "name_ar": "Caramelized Onion",
@@ -1291,139 +1291,139 @@
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Grilled Mushrooms",
       "name_ar": "Grilled Mushrooms",
       "price": 4.0,
-      "image_url": "/images/items/food-add-ons-grilled-mushrooms.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Jalapeno",
       "name_ar": "Jalapeno",
       "price": 3.0,
-      "image_url": "/images/items/food-add-ons-jalapeno.jpg",
+      "image_url": null,
       "sort_order": 7,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Protein Chicken",
       "name_ar": "Extra Protein Chicken",
       "price": 6.0,
-      "image_url": "/images/items/food-add-ons-extra-protein-chicken.jpg",
+      "image_url": null,
       "sort_order": 8,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Protein Shrimp",
       "name_ar": "Extra Protein Shrimp",
       "price": 12.0,
-      "image_url": "/images/items/food-add-ons-extra-protein-shrimp.jpg",
+      "image_url": null,
       "sort_order": 9,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Steak",
       "name_ar": "Extra Steak",
       "price": 12.0,
-      "image_url": "/images/items/food-add-ons-extra-steak.jpg",
+      "image_url": null,
       "sort_order": 10,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Feta Cheese",
       "name_ar": "Feta Cheese",
       "price": 4.0,
-      "image_url": "/images/items/food-add-ons-feta-cheese.jpg",
+      "image_url": null,
       "sort_order": 11,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Crispy Chicken 50 Gram",
       "name_ar": "دجاج كرسبي إضافي 50 غرام",
       "price": 5.0,
-      "image_url": "/images/items/food-add-ons-extra-crispy-chicken-50-gram.jpg",
+      "image_url": null,
       "sort_order": 12,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Crispy Shrimp 50 Gram",
       "name_ar": "روبيان كرسبي إضافي 50 غرام",
       "price": 7.0,
-      "image_url": "/images/items/food-add-ons-extra-crispy-shrimp-50-gram.jpg",
+      "image_url": null,
       "sort_order": 13,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Extra Angus Beef Patty 100 Gram",
       "name_ar": "قطعة برجر أنجوس إضافية 100 غرام",
       "price": 25.0,
-      "image_url": "/images/items/food-add-ons-extra-angus-beef-patty-100-gram.jpg",
+      "image_url": null,
       "sort_order": 14,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Green Salad Side Dish",
       "name_ar": "سلطة خضراء جانبية",
       "price": 5.0,
-      "image_url": "/images/items/food-add-ons-green-salad-side-dish.jpg",
+      "image_url": null,
       "sort_order": 15,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Cheese Cajun Fries",
       "name_ar": "بطاطس كاجن بالجبن",
       "price": 16.0,
-      "image_url": "/images/items/food-add-ons-cheese-cajun-fries.jpg",
+      "image_url": null,
       "sort_order": 16,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "cce07e5d-b395-4aa3-a1fa-561c84cf71fe",
+      "category_id": "25ea2de6-f393-4105-975d-f2b01ce9b359",
       "category": "Food Add-ons",
       "name_en": "Potato Wedges",
       "name_ar": "بطاطس ودجز",
       "price": 8.0,
-      "image_url": "/images/items/food-add-ons-potato-wedges.jpg",
+      "image_url": null,
       "sort_order": 17,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Caesar Sauce",
       "name_ar": "Caesar Sauce",
@@ -1434,7 +1434,7 @@
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Signature Sauce",
       "name_ar": "Signature Sauce",
@@ -1445,106 +1445,106 @@
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Cheese Sauce",
       "name_ar": "Cheese Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-cheese-sauce.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Spicy Cajun Sauce",
       "name_ar": "Spicy Cajun Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-spicy-cajun-sauce.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Fajita White Sauce",
       "name_ar": "Fajita White Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-fajita-white-sauce.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Pesto Sauce",
       "name_ar": "Pesto Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-pesto-sauce.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Balsamic Sauce",
       "name_ar": "Balsamic Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-balsamic-sauce.jpg",
+      "image_url": null,
       "sort_order": 7,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Extra Quattro Sauce",
       "name_ar": "Extra Quattro Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-extra-quattro-sauce.jpg",
+      "image_url": null,
       "sort_order": 8,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Extra Truffle Sauce",
       "name_ar": "Extra Truffle Sauce",
       "price": 4.0,
-      "image_url": "/images/items/sauce-add-ons-extra-truffle-sauce.jpg",
+      "image_url": null,
       "sort_order": 9,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Extra Italian Arrabiata Sauce",
       "name_ar": "Extra Italian Arrabiata Sauce",
       "price": 3.0,
-      "image_url": "/images/items/sauce-add-ons-extra-italian-arrabiata-sauce.jpg",
+      "image_url": null,
       "sort_order": 10,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "022787c5-1450-420c-a99f-d4543c828f1a",
+      "category_id": "af629dee-84b0-4a6f-b696-b85bf70c02b3",
       "category": "Sauce Add-ons",
       "name_en": "Extra Salsa",
       "name_ar": "Extra Salsa",
       "price": 3.0,
-      "image_url": "/images/items/sauce-add-ons-extra-salsa.jpg",
+      "image_url": null,
       "sort_order": 11,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Espresso",
       "name_ar": "Espresso",
@@ -1555,7 +1555,7 @@
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Flat White",
       "name_ar": "Flat White",
@@ -1566,67 +1566,67 @@
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "White Mocha Latte",
       "name_ar": "White Mocha Latte",
       "price": 16.0,
-      "image_url": "/images/items/our-coffee-white-mocha-latte.jpg",
+      "image_url": null,
       "sort_order": 3,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Iced Date Cloud",
       "name_ar": "آيسد ديت كلاود",
       "price": 37.0,
-      "image_url": "/images/items/our-coffee-iced-date-cloud.jpg",
+      "image_url": null,
       "sort_order": 4,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Coffee Brown Caramel Latte",
       "name_ar": "لاتيه براون كراميل",
       "price": 35.0,
-      "image_url": "/images/items/our-coffee-coffee-brown-caramel-latte.jpg",
+      "image_url": null,
       "sort_order": 5,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Iced Tiramissu Latte",
       "name_ar": "آيسد تيراميسو لاتيه",
       "price": 35.0,
-      "image_url": "/images/items/our-coffee-iced-tiramissu-latte.jpg",
+      "image_url": null,
       "sort_order": 6,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Cappuccino",
       "name_ar": "Cappuccino",
       "price": 19.0,
-      "image_url": "/images/items/our-coffee-cappuccino.jpg",
+      "image_url": null,
       "sort_order": 7,
       "is_available": true,
       "is_visible": true
     },
     {
-      "category_id": "3d6d4a2f-f1cd-44fd-8f55-b3bbda5f8849",
+      "category_id": "d9fb03b0-3a1f-49a2-b6af-24178fd91934",
       "category": "Our Coffee",
       "name_en": "Americano Classic",
       "name_ar": "أمريكانو كلاسيك",
       "price": 16.0,
-      "image_url": "/images/items/our-coffee-americano-classic.jpg",
+      "image_url": null,
       "sort_order": 8,
       "is_available": true,
       "is_visible": true
