@@ -213,7 +213,6 @@ export default function MenuPage() {
           </div>
           <div className="nav-cluster">
             <button className="ghost-pill" onClick={() => setLang(lang === "en" ? "ar" : "en")}>{lang === "en" ? "العربية" : "English"}</button>
-            {s.google_maps_url && <a className="ghost-pill" target="_blank" href={s.google_maps_url}>Location</a>}
           </div>
         </nav>
 
@@ -225,16 +224,6 @@ export default function MenuPage() {
             <div className="hero-actions">
               <a href="#menu" className="primary-cta">{lang === "ar" ? "استعرض المنيو" : "Explore menu"}</a>
               <button className="secondary-cta" onClick={() => setCheckout(true)} disabled={!cart.length}>{lang === "ar" ? "عرض الطلب" : "View order"}</button>
-            </div>
-            <div className="hero-contact-strip">
-              <a href={mapsHref} target="_blank" className="hero-contact-card">
-                <span className="contact-icon">⌖</span>
-                <div><b>{lang === "ar" ? "الموقع" : "Location"}</b><small>{addressText}</small></div>
-              </a>
-              <a href={`tel:${telPhone}`} className="hero-contact-card">
-                <span className="contact-icon">☎</span>
-                <div><b>{lang === "ar" ? "اتصل بنا" : "Call us"}</b><small>{displayPhone}</small></div>
-              </a>
             </div>
           </div>
 
@@ -251,39 +240,6 @@ export default function MenuPage() {
 
         <div className="slide-dots">
           {heroSlides.map((_, index) => <button key={index} className={index === slide % heroSlides.length ? "active" : ""} onClick={() => setSlide(index)} aria-label={`Slide ${index + 1}`} />)}
-        </div>
-      </section>
-
-      <section className="quality-band">
-        <div><strong>{lang === "ar" ? "صور فاخرة" : "Luxury visuals"}</strong><span>{lang === "ar" ? "سلايد شو متحرك بجودة عالية" : "Animated premium hero slideshow"}</span></div>
-        <div><strong>{lang === "ar" ? "طلب سريع" : "Fast ordering"}</strong><span>{lang === "ar" ? "واتساب للطلبات والاستلام" : "WhatsApp checkout for pickup"}</span></div>
-        <div><strong>{lang === "ar" ? "ترتيب ذكي" : "Smart sorting"}</strong><span>{lang === "ar" ? "الأكل أولاً ثم الإضافات والمشروبات" : "Food first, extras and drinks last"}</span></div>
-      </section>
-
-      <section id="contact" className="contact-showcase">
-        <div className="contact-feature location-feature">
-          <span className="contact-icon large">⌖</span>
-          <div>
-            <small>{lang === "ar" ? "زورونا في" : "Visit us at"}</small>
-            <strong>{addressText}</strong>
-            {mapsHref && <a href={mapsHref} target="_blank">{lang === "ar" ? "فتح الموقع على الخريطة" : "Open Google Maps"}</a>}
-          </div>
-        </div>
-        <div className="contact-feature phone-feature">
-          <span className="contact-icon large">☎</span>
-          <div>
-            <small>{lang === "ar" ? "اتصل بنا مباشرة" : "Call directly"}</small>
-            <strong>{displayPhone}</strong>
-            <a href={`tel:${telPhone}`}>{lang === "ar" ? "اتصال الآن" : "Call now"}</a>
-          </div>
-        </div>
-        <div className="contact-feature whatsapp-feature">
-          <span className="contact-icon large">✆</span>
-          <div>
-            <small>{lang === "ar" ? "واتساب للطلبات" : "WhatsApp orders"}</small>
-            <strong>{s.whatsapp_number || displayPhone}</strong>
-            <a href={`https://wa.me/${whatsappRaw}`} target="_blank">{lang === "ar" ? "إرسال رسالة" : "Send message"}</a>
-          </div>
         </div>
       </section>
 
@@ -368,7 +324,6 @@ export default function MenuPage() {
       </section>
 
       <div className="sticky-contact-dock" aria-label="Contact and location shortcuts">
-        {mapsHref && <a href={mapsHref} target="_blank" className="dock-action"><span>⌖</span><b>{lang === "ar" ? "الموقع" : "Location"}</b></a>}
         <a href={`tel:${telPhone}`} className="dock-action"><span>☎</span><b>{lang === "ar" ? "اتصال" : "Call"}</b></a>
         <a href={`https://wa.me/${whatsappRaw}`} target="_blank" className="dock-action whatsapp"><span>✆</span><b>WhatsApp</b></a>
       </div>

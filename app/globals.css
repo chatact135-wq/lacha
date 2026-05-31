@@ -50,3 +50,102 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.rtl{direction:r
 .hero-contact-strip{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;max-width:760px}.hero-contact-card{display:flex;align-items:center;gap:12px;min-width:min(310px,100%);padding:14px 16px;border-radius:22px;text-decoration:none;color:#fff;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(18px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 16px 42px rgba(0,0,0,.16);transition:.22s ease}.hero-contact-card:hover{transform:translateY(-2px);background:rgba(255,255,255,.16)}.contact-icon{flex:0 0 auto;width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#ffcb4d,#ff7a18);color:#19070b;font-weight:1000;font-size:22px;box-shadow:0 14px 34px rgba(255,154,27,.28)}.hero-contact-card b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:#ffdfad}.hero-contact-card small{display:block;margin-top:3px;color:#fff;font-weight:850;line-height:1.35;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.contact-showcase{position:relative;z-index:4;width:min(1180px,calc(100% - 24px));margin:18px auto 34px;display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:14px}.contact-feature{position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;min-height:132px;border-radius:30px;padding:20px;border:1px solid rgba(255,255,255,.78);background:rgba(255,255,255,.82);box-shadow:0 24px 70px rgba(57,12,20,.12);backdrop-filter:blur(20px)}.contact-feature:before{content:"";position:absolute;inset:auto -20% -80% auto;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(214,8,34,.18),transparent 68%);pointer-events:none}.contact-icon.large{width:60px;height:60px;border-radius:22px;font-size:29px}.contact-feature small{display:block;text-transform:uppercase;letter-spacing:.15em;color:#9f1239;font-size:11px;font-weight:1000}.contact-feature strong{display:block;margin:7px 0 9px;color:#19070b;font-size:clamp(18px,2vw,26px);letter-spacing:-.045em;line-height:1.18}.contact-feature a{display:inline-flex;align-items:center;gap:8px;color:var(--brand-red);font-weight:1000;text-decoration:none}.contact-feature a:after{content:"→"}.rtl .contact-feature a:after{content:"←"}.sticky-contact-dock{position:fixed;z-index:44;right:18px;top:50%;transform:translateY(-50%);display:grid;gap:10px}.dock-action{width:102px;min-height:88px;border-radius:24px;display:grid;place-items:center;gap:4px;text-align:center;text-decoration:none;color:#fff;background:rgba(18,5,8,.86);border:1px solid rgba(255,255,255,.16);box-shadow:0 22px 70px rgba(0,0,0,.28);backdrop-filter:blur(22px);transition:.22s ease}.dock-action:hover{transform:translateX(-3px);background:linear-gradient(135deg,#19070b,#42101a)}.dock-action span{width:38px;height:38px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#ffcb4d,#ff7a18);color:#1b0608;font-size:22px;font-weight:1000}.dock-action b{font-size:11px;text-transform:uppercase;letter-spacing:.08em}.dock-action.whatsapp span{background:linear-gradient(135deg,#35f28b,#11b95a)}
 @media(max-width:1080px){.contact-showcase{grid-template-columns:1fr}.sticky-contact-dock{top:auto;right:12px;bottom:92px;display:flex;transform:none}.dock-action{width:72px;min-height:64px;border-radius:20px}.dock-action span{width:32px;height:32px;border-radius:12px}.dock-action b{font-size:9px}.floating-cart{bottom:10px}}
 @media(max-width:760px){.hero-contact-strip{display:grid;grid-template-columns:1fr;margin-top:18px}.hero-contact-card{min-width:0}.hero-contact-card small{white-space:normal}.contact-showcase{width:calc(100% - 14px);margin:12px auto 22px;gap:10px}.contact-feature{min-height:112px;padding:16px;border-radius:24px}.contact-icon.large{width:50px;height:50px;border-radius:18px}.contact-feature strong{font-size:18px}.sticky-contact-dock{left:50%;right:auto;bottom:84px;transform:translateX(-50%);display:flex;background:rgba(255,247,239,.65);padding:7px;border:1px solid rgba(255,255,255,.55);border-radius:24px;backdrop-filter:blur(18px)}.dock-action:hover{transform:translateY(-2px)}}
+
+/* V6 cleanup requested: remove hero/below-banner contact blocks and improve mobile/RTL spacing */
+.hero-contact-strip,
+.quality-band,
+.contact-showcase{
+  display:none !important;
+}
+
+/* Keep the visible sticky shortcuts minimal and away from product buttons */
+.sticky-contact-dock{
+  z-index:42;
+}
+
+/* Prevent Arabic prices from colliding with the add button */
+.action-row{
+  min-width:0;
+}
+.price-stack{
+  min-width:0;
+  max-width:calc(100% - 108px);
+  overflow:hidden;
+}
+.action-row strong,
+.old-price{
+  white-space:nowrap;
+}
+.add-button{
+  flex:0 0 auto;
+  min-width:82px;
+}
+.rtl .action-row{
+  direction:rtl;
+}
+.rtl .price-stack{
+  text-align:right;
+  justify-items:end;
+}
+.rtl .add-button{
+  margin-inline-start:12px;
+}
+
+/* Mobile hero typography: smaller, cleaner, no overlapping */
+@media(max-width:760px){
+  .lux-hero{
+    min-height:640px;
+  }
+  .hero-grid{
+    padding:26px 16px 64px;
+  }
+  .hero-message h2{
+    font-size:clamp(34px,9vw,42px) !important;
+    line-height:1.08 !important;
+    letter-spacing:.012em !important;
+    max-width:100%;
+    margin:14px 0 14px;
+  }
+  .rtl .hero-message h2{
+    font-size:clamp(32px,8.6vw,40px) !important;
+    line-height:1.18 !important;
+    letter-spacing:.035em !important;
+  }
+  .hero-message p{
+    font-size:14px;
+    line-height:1.65;
+    letter-spacing:.01em;
+    margin-bottom:22px;
+  }
+  .rtl .hero-message p{
+    letter-spacing:.025em;
+  }
+  .open-pill{
+    font-size:11px;
+    padding:8px 11px;
+  }
+  .primary-cta,.secondary-cta{
+    min-height:46px;
+    padding:12px 16px;
+    border-radius:16px;
+    font-size:14px;
+    letter-spacing:.02em;
+  }
+  .search-card{
+    margin-top:20px;
+    padding:18px;
+  }
+  .action-row strong{
+    font-size:23px;
+  }
+  .price-stack{
+    max-width:calc(100% - 94px);
+  }
+  .add-button{
+    min-width:76px;
+    padding:12px 14px;
+  }
+  .rtl .add-button{
+    margin-inline-start:10px;
+  }
+}
