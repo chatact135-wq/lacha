@@ -7,8 +7,11 @@ const emptyItem={name_en:"",name_ar:"",description_en:"",description_ar:"",price
 async function normalizeImageForMenu(file: File, target: 'item' | 'settings' | 'hero'): Promise<File> {
   const isHero = target === 'hero';
   const isLogo = target === 'settings';
-  const targetWidth = isHero ? 1920 : isLogo ? 900 : 1200;
-  const targetHeight = isHero ? 1080 : isLogo ? 900 : 780;
+
+  // Item photos are created in exactly the same ratio used by the website card.
+  // This prevents browser cropping and gives a consistent premium menu layout.
+  const targetWidth = isHero ? 1920 : isLogo ? 900 : 1600;
+  const targetHeight = isHero ? 1080 : isLogo ? 900 : 900;
 
   const imageUrl = URL.createObjectURL(file);
   const img = await new Promise<HTMLImageElement>((resolve, reject) => {
@@ -24,48 +27,128 @@ async function normalizeImageForMenu(file: File, target: 'item' | 'settings' | '
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas not supported');
 
-  ctx.fillStyle = '#fff7f5';
+  function getSmartCropBox(image: HTMLImageElement) {
+    // For menu items, many uploaded photos have white/empty margins around the dish.
+    // This detector removes those margins before fitting the photo into the card.
+    if (isHero || isLogo) {
+      return { sx: 0, sy: 0, sw: image.width, sh: image.height };
+    }
+
+    const maxScan = 900;
+    const scale = Math.min(1, maxScan / Math.max(image.width, image.height));
+    const sw = Math.max(1, Math.round(image.width * scale));
+    const sh = Math.max(1, Math.round(image.height * scale));
+    const scan = document.createElement('canvas');
+    scan.width = sw;
+    scan.height = sh;
+    const scanCtx = scan.getContext('2d', { willReadFrequently: true });
+    if (!scanCtx) return { sx: 0, sy: 0, sw: image.width, sh: image.height };
+    scanCtx.drawImage(image, 0, 0, sw, sh);
+    const data = scanCtx.getImageData(0, 0, sw, sh).data;
+
+    const sample = (x: number, y: number) => {
+      const i = (Math.max(0, Math.min(sh - 1, y)) * sw + Math.max(0, Math.min(sw - 1, x))) * 4;
+      return [data[i], data[i + 1], data[i + 2]] as [number, number, number];
+    };
+
+    // Average the corners. Most product photos use a plain background around corners.
+    const points: [number, number][] = [
+      [3, 3], [sw - 4, 3], [3, sh - 4], [sw - 4, sh - 4],
+      [Math.floor(sw / 2), 3], [Math.floor(sw / 2), sh - 4],
+      [3, Math.floor(sh / 2)], [sw - 4, Math.floor(sh / 2)]
+    ];
+    const bg = points.reduce((acc, [x, y]) => {
+      const c = sample(x, y); return [acc[0] + c[0], acc[1] + c[1], acc[2] + c[2]];
+    }, [0, 0, 0]).map(v => v / points.length);
+
+    const diff = (r: number, g: number, b: number) =>
+      Math.abs(r - bg[0]) + Math.abs(g - bg[1]) + Math.abs(b - bg[2]);
+
+    let minX = sw, minY = sh, maxX = -1, maxY = -1;
+    const step = Math.max(1, Math.floor(Math.max(sw, sh) / 450));
+    for (let y = 0; y < sh; y += step) {
+      for (let x = 0; x < sw; x += step) {
+        const i = (y * sw + x) * 4;
+        const a = data[i + 3];
+        if (a < 20) continue;
+        const d = diff(data[i], data[i + 1], data[i + 2]);
+        const isNotEmpty = d > 42;
+        if (isNotEmpty) {
+          if (x < minX) minX = x;
+          if (y < minY) minY = y;
+          if (x > maxX) maxX = x;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+
+    // Fallback when the detector cannot find a useful product area.
+    if (maxX < 0 || maxY < 0) return { sx: 0, sy: 0, sw: image.width, sh: image.height };
+    const boxW = maxX - minX;
+    const boxH = maxY - minY;
+    if (boxW < sw * 0.12 || boxH < sh * 0.12) return { sx: 0, sy: 0, sw: image.width, sh: image.height };
+
+    const padX = boxW * 0.10;
+    const padY = boxH * 0.10;
+    minX = Math.max(0, Math.floor(minX - padX));
+    minY = Math.max(0, Math.floor(minY - padY));
+    maxX = Math.min(sw - 1, Math.ceil(maxX + padX));
+    maxY = Math.min(sh - 1, Math.ceil(maxY + padY));
+
+    return {
+      sx: minX / scale,
+      sy: minY / scale,
+      sw: (maxX - minX) / scale,
+      sh: (maxY - minY) / scale,
+    };
+  }
+
+  const crop = getSmartCropBox(img);
+
+  // Background fill uses the cropped product area. This gives a premium full-width look.
+  ctx.fillStyle = isLogo ? '#fff7f5' : '#16070b';
   ctx.fillRect(0, 0, targetWidth, targetHeight);
 
-  // Soft blurred background fills the frame without leaving ugly empty spaces.
-  const bgScale = Math.max(targetWidth / img.width, targetHeight / img.height);
-  const bgW = img.width * bgScale;
-  const bgH = img.height * bgScale;
+  const bgScale = Math.max(targetWidth / crop.sw, targetHeight / crop.sh);
+  const bgW = crop.sw * bgScale;
+  const bgH = crop.sh * bgScale;
   const bgX = (targetWidth - bgW) / 2;
   const bgY = (targetHeight - bgH) / 2;
   ctx.save();
-  ctx.filter = isLogo ? 'blur(10px)' : 'blur(22px)';
-  ctx.globalAlpha = isLogo ? 0.22 : 0.36;
-  ctx.drawImage(img, bgX, bgY, bgW, bgH);
+  ctx.filter = isLogo ? 'blur(8px)' : 'blur(26px) saturate(1.08)';
+  ctx.globalAlpha = isLogo ? 0.18 : 0.42;
+  ctx.drawImage(img, crop.sx, crop.sy, crop.sw, crop.sh, bgX, bgY, bgW, bgH);
   ctx.restore();
 
-  // Dark premium gradient for food photos, so transparent/empty edges still look branded.
   if (!isLogo) {
     const grd = ctx.createLinearGradient(0, 0, targetWidth, targetHeight);
-    grd.addColorStop(0, 'rgba(20, 7, 11, 0.26)');
-    grd.addColorStop(0.55, 'rgba(255, 247, 245, 0.10)');
-    grd.addColorStop(1, 'rgba(210, 10, 30, 0.18)');
+    grd.addColorStop(0, 'rgba(20, 7, 11, 0.20)');
+    grd.addColorStop(0.50, 'rgba(255, 255, 255, 0.06)');
+    grd.addColorStop(1, 'rgba(210, 10, 30, 0.16)');
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, targetWidth, targetHeight);
   }
 
-  // Foreground image is contained, not cropped.
-  const pad = isHero ? 0 : isLogo ? 70 : 44;
+  // Foreground: full product, no crop, but enlarged after automatic margin trimming.
+  const pad = isHero ? 0 : isLogo ? 70 : 18;
   const maxW = targetWidth - pad * 2;
   const maxH = targetHeight - pad * 2;
-  const scale = Math.min(maxW / img.width, maxH / img.height);
-  const drawW = img.width * scale;
-  const drawH = img.height * scale;
+  let fgScale = Math.min(maxW / crop.sw, maxH / crop.sh);
+  // Small square/portrait dishes now appear much larger, while still staying fully visible.
+  if (!isHero && !isLogo) fgScale = Math.min(fgScale * 1.04, maxW / crop.sw, maxH / crop.sh);
+  const drawW = crop.sw * fgScale;
+  const drawH = crop.sh * fgScale;
   const x = (targetWidth - drawW) / 2;
   const y = (targetHeight - drawH) / 2;
+
   ctx.globalAlpha = 1;
   ctx.filter = 'none';
-  ctx.drawImage(img, x, y, drawW, drawH);
+  ctx.drawImage(img, crop.sx, crop.sy, crop.sw, crop.sh, x, y, drawW, drawH);
 
   URL.revokeObjectURL(imageUrl);
 
   const blob = await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Could not create image')), 'image/webp', 0.92);
+    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Could not create image')), 'image/webp', 0.94);
   });
 
   const baseName = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9-_]+/g, '-').slice(0, 60) || 'menu-image';
