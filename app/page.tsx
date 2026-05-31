@@ -24,6 +24,12 @@ function finalPrice(it: Item) {
   return discount > 0 ? price * (1 - discount / 100) : price;
 }
 
+function imageIsPlaceholder(url?: string) {
+  if (!url) return true;
+  const u = String(url);
+  return u.includes("/images/items/") || u.includes("placeholder") || u.includes("Photo soon");
+}
+
 export default function MenuPage() {
   const [data, setData] = useState<{ settings: Settings; categories: Category[]; items: Item[]; deliveryLinks: any[] } | null>(null);
   const [lang, setLang] = useState<"en" | "ar">("en");
@@ -43,17 +49,26 @@ export default function MenuPage() {
   const s = data?.settings || {};
   const dir = lang === "ar" ? "rtl" : "";
 
-  const items = useMemo(() => {
+  const visibleItems = useMemo(() => {
     if (!data) return [];
+    return data.items.filter((it: Item) => it.is_visible !== false);
+  }, [data]);
+
+  const items = useMemo(() => {
     const text = q.trim().toLowerCase();
-    return data.items.filter((it: Item) => {
+    return visibleItems.filter((it: Item) => {
       const name = itemName(it, lang).toLowerCase();
       const desc = itemDesc(it, lang).toLowerCase();
       return (cat === "all" || it.category_id === cat) && (!text || name.includes(text) || desc.includes(text));
     });
-  }, [data, cat, q, lang]);
+  }, [visibleItems, cat, q, lang]);
 
-  const featured = useMemo(() => items.slice(0, 6), [items]);
+  const featured = useMemo(() => {
+    const discounted = visibleItems.filter((it: Item) => discountPercent(it) > 0 && it.is_available !== false);
+    const withPhotos = visibleItems.filter((it: Item) => !imageIsPlaceholder(it.image_url) && it.is_available !== false);
+    const pool = [...discounted, ...withPhotos, ...visibleItems].filter((it, index, arr) => arr.findIndex((x) => x.id === it.id) === index);
+    return pool.slice(0, 6);
+  }, [visibleItems]);
 
   function add(it: Item) {
     setCart((c) => {
@@ -94,161 +109,164 @@ export default function MenuPage() {
 
   if (!data) {
     return (
-      <main className="app-shell loading-screen">
-        <div className="orb orb-one" />
-        <div className="orb orb-two" />
-        <div className="loader-card">Loading La Cha Cha menu...</div>
+      <main className="lux-page loading-screen">
+        <div className="lux-loader"><span /> Loading La Cha Cha</div>
       </main>
     );
   }
 
   const restaurantName = lang === "ar" ? s.name_ar || s.name_en || "La Cha Cha" : s.name_en || "La Cha Cha";
-  const welcome = lang === "ar" ? s.welcome_ar || "قائمة رقمية بتصميم حديث وتجربة طلب سهلة." : s.welcome_en || "A premium digital menu experience crafted for fast browsing and easy ordering.";
+  const welcome = lang === "ar" ? s.welcome_ar || "قائمة رقمية فاخرة، تصفح سريع، وطلب مباشر." : s.welcome_en || "A premium digital menu crafted for cravings, speed, and effortless ordering.";
   const heroImage = s.hero_image_url || "/images/hero-banner.png";
 
   return (
-    <main
-      className={`app-shell ${dir}`}
-      style={{ ["--red" as any]: s.primary_color || "#d20a1e", ["--dark" as any]: s.secondary_color || "#13070b" }}
-    >
-      <div className="orb orb-one" />
-      <div className="orb orb-two" />
-      <div className="orb orb-three" />
-
-      <section className="neo-hero" style={{ ["--hero-bg" as any]: `url(${heroImage})` }}>
-        <div className="hero-overlay" />
-        <nav className="topbar">
-          <div className="identity">
-            {s.logo_url ? <img src={s.logo_url} className="brand-logo" alt="Logo" /> : <div className="brand-logo text-logo">LC</div>}
+    <main className={`lux-page ${dir}`} style={{ ["--red" as any]: s.primary_color || "#d20a1e", ["--dark" as any]: s.secondary_color || "#110509", ["--hero-bg" as any]: `url(${heroImage})` }}>
+      <section className="lux-hero">
+        <div className="hero-bg" />
+        <div className="hero-noise" />
+        <nav className="lux-nav">
+          <div className="lux-brand">
+            {s.logo_url ? <img src={s.logo_url} alt="Logo" /> : <strong>LC</strong>}
             <div>
-              <span className="micro-label">Digital Menu</span>
-              <h1>{restaurantName}</h1>
+              <span>{lang === "ar" ? "منيو رقمي فاخر" : "Premium Digital Menu"}</span>
+              <b>{restaurantName}</b>
             </div>
           </div>
-          <div className="nav-actions">
-            <button className="chip-button" onClick={() => setLang(lang === "en" ? "ar" : "en")}>{lang === "en" ? "العربية" : "English"}</button>
-            {s.google_maps_url && <a className="chip-button" target="_blank" href={s.google_maps_url}>Maps</a>}
+          <div className="lux-actions">
+            <button onClick={() => setLang(lang === "en" ? "ar" : "en")}>{lang === "en" ? "العربية" : "English"}</button>
+            {s.google_maps_url && <a href={s.google_maps_url} target="_blank">Maps</a>}
           </div>
         </nav>
 
-        <div className="hero-content">
-          <div className="hero-copy">
-            <span className="status-pill"><span className="live-dot" /> {s.opening_hours || "00:00 ~ 23:59"}</span>
-            <h2>{lang === "ar" ? "تجربة منيو فاخرة وسريعة" : "Premium menu, modern ordering"}</h2>
+        <div className="hero-inner">
+          <div className="hero-text">
+            <div className="hero-kicker"><span className="pulse" /> {s.opening_hours || "00:00 ~ 23:59"}</div>
+            <h1>{lang === "ar" ? "نكهات مميزة بتجربة طلب فاخرة" : "Food that looks irresistible from the first glance"}</h1>
             <p>{welcome}</p>
-            <div className="hero-metrics">
-              <div><strong>{data.categories.length}</strong><span>{lang === "ar" ? "تصنيف" : "Categories"}</span></div>
-              <div><strong>{data.items.length}</strong><span>{lang === "ar" ? "منتج" : "Items"}</span></div>
-              <div><strong>AED</strong><span>{lang === "ar" ? "العملة" : "Currency"}</span></div>
+            <div className="hero-cta-row">
+              <a href="#menu" className="primary-cta">{lang === "ar" ? "تصفح المنيو" : "Explore Menu"}</a>
+              <button className="secondary-cta" onClick={() => setCheckout(true)} disabled={cart.length === 0}>{lang === "ar" ? "سلة الطلب" : "My Order"}</button>
             </div>
           </div>
 
-          <div className="hero-panel">
-            <label>{lang === "ar" ? "ابحث في المنيو" : "Search the menu"}</label>
-            <input className="search-neo" placeholder={lang === "ar" ? "مثال: برجر، باستا، قهوة" : "Try burger, pasta, coffee"} value={q} onChange={(e) => setQ(e.target.value)} />
-            <div className="order-types">
-              <span>Pickup</span><span>Dine-in</span><span>Delivery</span>
+          <div className="hero-glass-card">
+            <div className="glass-title">
+              <span>{lang === "ar" ? "بحث سريع" : "Quick Search"}</span>
+              <b>{data.items.length} {lang === "ar" ? "منتج" : "items"}</b>
             </div>
+            <input placeholder={lang === "ar" ? "ابحث: برجر، باستا، قهوة" : "Search: burger, pasta, coffee"} value={q} onChange={(e) => setQ(e.target.value)} />
+            <div className="glass-tags"><span>Pickup</span><span>Dine-in</span><span>Delivery</span></div>
           </div>
         </div>
       </section>
 
-      <section className="category-dock">
-        <button className={`category-pill ${cat === "all" ? "active" : ""}`} onClick={() => setCat("all")}>{lang === "ar" ? "الكل" : "All"}</button>
-        {data.categories.map((c) => (
-          <button key={c.id} className={`category-pill ${cat === c.id ? "active" : ""}`} onClick={() => setCat(c.id)}>
-            {lang === "ar" ? c.name_ar || c.name_en : c.name_en}
-          </button>
-        ))}
+      <section className="experience-bar">
+        <div><strong>{data.categories.length}</strong><span>{lang === "ar" ? "تصنيف" : "Categories"}</span></div>
+        <div><strong>{visibleItems.length}</strong><span>{lang === "ar" ? "منتج" : "Menu items"}</span></div>
+        <div><strong>AED</strong><span>{lang === "ar" ? "أسعار واضحة" : "Clear prices"}</span></div>
+        <div><strong>WhatsApp</strong><span>{lang === "ar" ? "طلب مباشر" : "Fast ordering"}</span></div>
       </section>
 
-      {featured.length > 0 && (
-        <section className="spotlight-strip">
-          {featured.map((it) => (
-            <button key={it.id} className="spotlight-card" onClick={() => add(it)}>
-              <span>{itemName(it, lang)}</span>
-              {discountPercent(it) > 0 ? (
-                <strong><small>AED {Number(it.price).toFixed(2)}</small> AED {finalPrice(it).toFixed(2)}</strong>
-              ) : (
-                <strong>AED {Number(it.price).toFixed(2)}</strong>
-              )}
+      <section className="menu-wrap" id="menu">
+        <div className="section-heading">
+          <span>{lang === "ar" ? "اختيارك اليوم" : "Choose your craving"}</span>
+          <h2>{lang === "ar" ? "منيو لا تشا تشا" : "La Cha Cha Menu"}</h2>
+        </div>
+
+        <div className="lux-category-scroll">
+          <button className={cat === "all" ? "active" : ""} onClick={() => setCat("all")}>{lang === "ar" ? "الكل" : "All"}</button>
+          {data.categories.map((c) => (
+            <button key={c.id} className={cat === c.id ? "active" : ""} onClick={() => setCat(c.id)}>
+              {lang === "ar" ? c.name_ar || c.name_en : c.name_en}
             </button>
           ))}
-        </section>
-      )}
+        </div>
 
-      <section className="menu-grid">
-        {items.map((it) => {
-          const imageLooksLikeSeedCrop = !it.image_url || String(it.image_url).includes("/images/items/");
-          const discount = discountPercent(it);
-          return (
-            <article key={it.id} className={`menu-card ${!it.is_available ? "sold" : ""}`}> 
-              <div className="image-stage">
-                {it.image_url && !imageLooksLikeSeedCrop ? (
-                  <div className="smart-image">
-                    <img className="smart-image-bg" src={it.image_url} alt="" aria-hidden="true" />
-                    <img className="smart-image-main" src={it.image_url} alt={itemName(it, lang)} />
-                  </div>
-                ) : (
-                  <div className="image-soon">
-                    <span>{lang === "ar" ? "صورة قريباً" : "Photo soon"}</span>
-                    <small>{lang === "ar" ? "ارفع صورة أصلية من الأدمن" : "Upload real photo from admin"}</small>
-                  </div>
-                )}
-                {discount > 0 && <div className="discount-ribbon">-{discount}%</div>}
-              </div>
-              <div className="menu-card-body">
-                <div className="card-topline">
-                  {it.label && <span className="small-badge">{it.label}</span>}
-                  {discount > 0 && <span className="small-badge discount-badge">Discount</span>}
-                  {!it.is_available && <span className="small-badge danger">Sold out</span>}
+        {featured.length > 0 && cat === "all" && !q.trim() && (
+          <div className="featured-row">
+            {featured.map((it) => {
+              const discount = discountPercent(it);
+              return (
+                <button className="featured-tile" key={it.id} onClick={() => add(it)}>
+                  <span>{discount > 0 ? `-${discount}%` : "Popular"}</span>
+                  <b>{itemName(it, lang)}</b>
+                  <em>AED {finalPrice(it).toFixed(2)}</em>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        <div className="lux-grid">
+          {items.map((it) => {
+            const discount = discountPercent(it);
+            const hasPhoto = !imageIsPlaceholder(it.image_url);
+            return (
+              <article className={`lux-card ${!it.is_available ? "not-available" : ""}`} key={it.id}>
+                <div className="photo-box">
+                  {hasPhoto ? (
+                    <>
+                      <img className="photo-blur" src={it.image_url} alt="" aria-hidden="true" />
+                      <img className="photo-main" src={it.image_url} alt={itemName(it, lang)} />
+                    </>
+                  ) : (
+                    <div className="photo-soon"><b>Photo soon</b><span>Upload real product photo</span></div>
+                  )}
+                  {discount > 0 && <span className="deal-badge">-{discount}%</span>}
                 </div>
-                <h3>{itemName(it, lang)}</h3>
-                <p>{itemDesc(it, lang)}</p>
-                <div className="action-row">
-                  <div className="price-stack">
-                    {discount > 0 && <span className="old-price">AED {Number(it.price).toFixed(2)}</span>}
-                    <strong>AED {finalPrice(it).toFixed(2)}</strong>
+                <div className="lux-card-body">
+                  <div className="mini-row">
+                    {discount > 0 && <span>Special Offer</span>}
+                    {it.label && <span>{it.label}</span>}
+                    {!it.is_available && <span>Sold out</span>}
                   </div>
-                  {it.is_available ? <button className="add-button" onClick={() => add(it)}>{lang === "ar" ? "إضافة" : "Add"}</button> : <span className="sold-text">Unavailable</span>}
+                  <h3>{itemName(it, lang)}</h3>
+                  <p>{itemDesc(it, lang)}</p>
+                  <div className="price-action">
+                    <div className="price">
+                      {discount > 0 && <small>AED {Number(it.price).toFixed(2)}</small>}
+                      <strong>AED {finalPrice(it).toFixed(2)}</strong>
+                    </div>
+                    {it.is_available ? <button onClick={() => add(it)}>{lang === "ar" ? "إضافة" : "Add"}</button> : <em>Unavailable</em>}
+                  </div>
                 </div>
-              </div>
-            </article>
-          );
-        })}
+              </article>
+            );
+          })}
+        </div>
+
+        {items.length === 0 && <div className="empty-lux">{lang === "ar" ? "لا توجد نتائج" : "No matching items found"}</div>}
       </section>
 
       {cart.length > 0 && (
-        <section className="floating-cart">
-          <div>
-            <span>{lang === "ar" ? "سلة الطلب" : "Your order"}</span>
-            <strong>{cart.length} item(s) • AED {total.toFixed(2)}</strong>
-          </div>
-          <button className="checkout-button" onClick={() => setCheckout(true)}>{lang === "ar" ? "إتمام الطلب" : "Checkout"}</button>
+        <section className="lux-cart-bar">
+          <div><span>{lang === "ar" ? "سلة الطلب" : "Your order"}</span><strong>{cart.length} items • AED {total.toFixed(2)}</strong></div>
+          <button onClick={() => setCheckout(true)}>{lang === "ar" ? "إكمال الطلب" : "Checkout"}</button>
         </section>
       )}
 
       {checkout && (
-        <div className="modal">
-          <div className="modal-card premium-modal">
-            <h2>{lang === "ar" ? "تفاصيل الطلب" : "Order details"}</h2>
-            <div className="cart-lines">
+        <div className="lux-modal">
+          <div className="lux-modal-card">
+            <button className="x" onClick={() => setCheckout(false)}>×</button>
+            <h2>{lang === "ar" ? "إتمام الطلب" : "Complete your order"}</h2>
+            <div className="cart-list">
               {cart.map((x) => (
-                <div className="cart-line" key={x.id}>
-                  <span>{x.name_en}</span>
-                  <span><button onClick={() => changeQty(x.id, -1)}>-</button> {x.qty} <button onClick={() => changeQty(x.id, 1)}>+</button></span>
+                <div key={x.id} className="cart-line">
+                  <div><b>{itemName(x, lang)}</b><span>AED {finalPrice(x).toFixed(2)}</span></div>
+                  <div className="qty"><button onClick={() => changeQty(x.id, -1)}>-</button><strong>{x.qty}</strong><button onClick={() => changeQty(x.id, 1)}>+</button></div>
                 </div>
               ))}
             </div>
-            <div className="form">
-              <select className="input" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}><option value="pickup">Pickup</option><option value="dinein">Dine-in</option><option value="delivery">Delivery</option></select>
-              <input className="input" placeholder="Customer name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-              <input className="input" placeholder="Customer phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-              {form.type === "dinein" && <input className="input" placeholder="Table number" value={form.table} onChange={(e) => setForm({ ...form, table: e.target.value })} />}
-              {form.type !== "delivery" && <select className="input" value={form.payment} onChange={(e) => setForm({ ...form, payment: e.target.value })}><option>Cash</option><option>Card</option></select>}
-              <textarea className="input" placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
-              <div className="modal-actions"><button className="checkout-button" onClick={whatsapp}>Send WhatsApp</button><button className="cancel-button" onClick={() => setCheckout(false)}>Close</button></div>
+            <div className="checkout-form">
+              <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}><option value="pickup">Pickup</option><option value="dinein">Dine-in</option><option value="delivery">Delivery</option></select>
+              <input placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+              <input placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+              {form.type === "dinein" && <input placeholder="Table number" value={form.table} onChange={(e) => setForm({ ...form, table: e.target.value })} />}
+              {form.type !== "delivery" && <select value={form.payment} onChange={(e) => setForm({ ...form, payment: e.target.value })}><option>Cash</option><option>Card</option></select>}
+              <textarea placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
             </div>
+            <button className="send-order" disabled={cart.length === 0} onClick={whatsapp}>{lang === "ar" ? "إرسال عبر واتساب" : "Send order on WhatsApp"} • AED {total.toFixed(2)}</button>
           </div>
         </div>
       )}
