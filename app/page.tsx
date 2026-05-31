@@ -183,6 +183,11 @@ export default function MenuPage() {
   const restaurantName = lang === "ar" ? s.name_ar || s.name_en || "La Cha Cha" : s.name_en || "La Cha Cha";
   const welcome = lang === "ar" ? s.welcome_ar || "مطعم فاخر بتجربة رقمية حديثة وطلب سريع." : s.welcome_en || "A luxury digital menu designed to showcase quality, flavor, and a refined ordering experience.";
   const currentSlide = heroSlides[slide % heroSlides.length] || BUILT_IN_SLIDES[0];
+  const addressText = lang === "ar" ? s.address_ar || s.address_en || "Abu Dhabi, UAE" : s.address_en || s.address_ar || "Abu Dhabi, UAE";
+  const displayPhone = s.phone_number || s.whatsapp_number || "+971 3 722 7116";
+  const telPhone = String(displayPhone).replace(/[^0-9+]/g, "");
+  const whatsappRaw = String(s.whatsapp_number || displayPhone || "+97137227116").replace(/[^0-9]/g, "");
+  const mapsHref = s.google_maps_url || (addressText ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressText)}` : "");
 
   return (
     <main className={`luxury-site ${dir}`} style={{ ["--brand-red" as any]: s.primary_color || "#d60822", ["--brand-dark" as any]: s.secondary_color || "#120508" }}>
@@ -221,6 +226,16 @@ export default function MenuPage() {
               <a href="#menu" className="primary-cta">{lang === "ar" ? "استعرض المنيو" : "Explore menu"}</a>
               <button className="secondary-cta" onClick={() => setCheckout(true)} disabled={!cart.length}>{lang === "ar" ? "عرض الطلب" : "View order"}</button>
             </div>
+            <div className="hero-contact-strip">
+              <a href={mapsHref} target="_blank" className="hero-contact-card">
+                <span className="contact-icon">⌖</span>
+                <div><b>{lang === "ar" ? "الموقع" : "Location"}</b><small>{addressText}</small></div>
+              </a>
+              <a href={`tel:${telPhone}`} className="hero-contact-card">
+                <span className="contact-icon">☎</span>
+                <div><b>{lang === "ar" ? "اتصل بنا" : "Call us"}</b><small>{displayPhone}</small></div>
+              </a>
+            </div>
           </div>
 
           <div className="search-card">
@@ -243,6 +258,33 @@ export default function MenuPage() {
         <div><strong>{lang === "ar" ? "صور فاخرة" : "Luxury visuals"}</strong><span>{lang === "ar" ? "سلايد شو متحرك بجودة عالية" : "Animated premium hero slideshow"}</span></div>
         <div><strong>{lang === "ar" ? "طلب سريع" : "Fast ordering"}</strong><span>{lang === "ar" ? "واتساب للطلبات والاستلام" : "WhatsApp checkout for pickup"}</span></div>
         <div><strong>{lang === "ar" ? "ترتيب ذكي" : "Smart sorting"}</strong><span>{lang === "ar" ? "الأكل أولاً ثم الإضافات والمشروبات" : "Food first, extras and drinks last"}</span></div>
+      </section>
+
+      <section id="contact" className="contact-showcase">
+        <div className="contact-feature location-feature">
+          <span className="contact-icon large">⌖</span>
+          <div>
+            <small>{lang === "ar" ? "زورونا في" : "Visit us at"}</small>
+            <strong>{addressText}</strong>
+            {mapsHref && <a href={mapsHref} target="_blank">{lang === "ar" ? "فتح الموقع على الخريطة" : "Open Google Maps"}</a>}
+          </div>
+        </div>
+        <div className="contact-feature phone-feature">
+          <span className="contact-icon large">☎</span>
+          <div>
+            <small>{lang === "ar" ? "اتصل بنا مباشرة" : "Call directly"}</small>
+            <strong>{displayPhone}</strong>
+            <a href={`tel:${telPhone}`}>{lang === "ar" ? "اتصال الآن" : "Call now"}</a>
+          </div>
+        </div>
+        <div className="contact-feature whatsapp-feature">
+          <span className="contact-icon large">✆</span>
+          <div>
+            <small>{lang === "ar" ? "واتساب للطلبات" : "WhatsApp orders"}</small>
+            <strong>{s.whatsapp_number || displayPhone}</strong>
+            <a href={`https://wa.me/${whatsappRaw}`} target="_blank">{lang === "ar" ? "إرسال رسالة" : "Send message"}</a>
+          </div>
+        </div>
       </section>
 
       {signatureItems.length > 0 && (
@@ -324,6 +366,12 @@ export default function MenuPage() {
           })}
         </div>
       </section>
+
+      <div className="sticky-contact-dock" aria-label="Contact and location shortcuts">
+        {mapsHref && <a href={mapsHref} target="_blank" className="dock-action"><span>⌖</span><b>{lang === "ar" ? "الموقع" : "Location"}</b></a>}
+        <a href={`tel:${telPhone}`} className="dock-action"><span>☎</span><b>{lang === "ar" ? "اتصال" : "Call"}</b></a>
+        <a href={`https://wa.me/${whatsappRaw}`} target="_blank" className="dock-action whatsapp"><span>✆</span><b>WhatsApp</b></a>
+      </div>
 
       {cart.length > 0 && (
         <section className="floating-cart">
