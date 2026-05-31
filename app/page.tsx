@@ -1,15 +1,25 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 
-type Settings = any;
-type Category = any;
-type Item = any;
+type Settings = Record<string, any>;
+type Category = Record<string, any>;
+type Item = Record<string, any>;
 
-function itemName(it: Item, lang: "en" | "ar") {
+type Lang = "en" | "ar";
+
+const BUILT_IN_SLIDES = [
+  "/images/hero-slide-1.png",
+  "/images/hero-slide-2.png",
+  "/images/hero-slide-3.png",
+  "/images/hero-slide-4.png",
+  "/images/hero-slide-5.png",
+];
+
+function itemName(it: Item, lang: Lang) {
   return (lang === "ar" ? it.name_ar || it.name_en : it.name_en || it.name_ar) || "Menu item";
 }
 
-function itemDesc(it: Item, lang: "en" | "ar") {
+function itemDesc(it: Item, lang: Lang) {
   return (lang === "ar" ? it.description_ar || it.description_en : it.description_en || it.description_ar) || "Freshly prepared by La Cha Cha.";
 }
 
@@ -24,19 +34,47 @@ function finalPrice(it: Item) {
   return discount > 0 ? price * (1 - discount / 100) : price;
 }
 
-function imageIsPlaceholder(url?: string) {
-  if (!url) return true;
-  const u = String(url);
-  return u.includes("/images/items/") || u.includes("placeholder") || u.includes("Photo soon");
+function normalizedCategoryName(c?: Category | null) {
+  return String(c?.name_en || c?.name_ar || "").toLowerCase();
+}
+
+function categoryPriority(c?: Category | null) {
+  const n = normalizedCategoryName(c);
+  if (!n) return 50;
+  if (n.includes("breakfast")) return 1;
+  if (n.includes("what")) return 2;
+  if (n.includes("fresh")) return 3;
+  if (n.includes("casserole")) return 4;
+  if (n.includes("sandwich")) return 5;
+  if (n.includes("burger") || n.includes("sear")) return 6;
+  if (n.includes("seafood")) return 7;
+  if (n.includes("grill") || n.includes("chef")) return 8;
+  if (n.includes("moroccan table")) return 9;
+  if (n.includes("moroccan oven")) return 10;
+  if (n.includes("italian") || n.includes("pasta")) return 11;
+  if (n.includes("melt")) return 12;
+  if (n.includes("loaded")) return 13;
+  if (n.includes("sweet") || n.includes("dessert") || n.includes("ending")) return 70;
+  if (n.includes("coffee")) return 80;
+  if (n.includes("beverage") || n.includes("drink") || n.includes("mojito") || n.includes("water")) return 85;
+  if (n.includes("sauce")) return 90;
+  if (n.includes("add") || n.includes("extra") || n.includes("cheese")) return 95;
+  return 40;
+}
+
+function isAddOnCategory(c?: Category | null) {
+  const n = normalizedCategoryName(c);
+  return n.includes("add") || n.includes("extra") || n.includes("sauce") || n.includes("beverage") || n.includes("drink") || n.includes("coffee");
 }
 
 export default function MenuPage() {
   const [data, setData] = useState<{ settings: Settings; categories: Category[]; items: Item[]; deliveryLinks: any[] } | null>(null);
-  const [lang, setLang] = useState<"en" | "ar">("en");
+  const [lang, setLang] = useState<Lang>("en");
   const [cat, setCat] = useState("all");
   const [q, setQ] = useState("");
   const [cart, setCart] = useState<any[]>([]);
   const [checkout, setCheckout] = useState(false);
+  const [slide, setSlide] = useState(0);
   const [form, setForm] = useState({ type: "pickup", name: "", phone: "", table: "", payment: "Cash", notes: "" });
 
   useEffect(() => {
@@ -49,26 +87,51 @@ export default function MenuPage() {
   const s = data?.settings || {};
   const dir = lang === "ar" ? "rtl" : "";
 
-  const visibleItems = useMemo(() => {
-    if (!data) return [];
-    return data.items.filter((it: Item) => it.is_visible !== false);
-  }, [data]);
+  const sortedCategories = useMemo(() => {
+    const cats = [...(data?.categories || [])];
+    return cats.sort((a, b) => categoryPriority(a) - categoryPriority(b) || Number(a.sort_order || 0) - Number(b.sort_order || 0));
+  }, [data?.categories]);
+
+  const categoryMap = useMemo(() => new Map(sortedCategories.map((c) => [c.id, c])), [sortedCategories]);
+
+  const heroSlides = useMemo(() => {
+    const custom = [s.hero_image_url, s.hero_image_url_2, s.hero_image_url_3].filter(Boolean);
+    return [...custom, ...BUILT_IN_SLIDES].filter(Boolean);
+  }, [s.hero_image_url, s.hero_image_url_2, s.hero_image_url_3]);
+
+  useEffect(() => {
+    if (heroSlides.length <= 1) return;
+    const id = window.setInterval(() => setSlide((v) => (v + 1) % heroSlides.length), 5200);
+    return () => window.clearInterval(id);
+  }, [heroSlides.length]);
+
+  const allSortedItems = useMemo(() => {
+    const items = [...(data?.items || [])];
+    return items.sort((a, b) => {
+      const ca = categoryMap.get(a.category_id);
+      const cb = categoryMap.get(b.category_id);
+      return categoryPriority(ca) - categoryPriority(cb) || Number(a.sort_order || 0) - Number(b.sort_order || 0) || itemName(a, "en").localeCompare(itemName(b, "en"));
+    });
+  }, [data?.items, categoryMap]);
 
   const items = useMemo(() => {
     const text = q.trim().toLowerCase();
-    return visibleItems.filter((it: Item) => {
+    return allSortedItems.filter((it: Item) => {
       const name = itemName(it, lang).toLowerCase();
       const desc = itemDesc(it, lang).toLowerCase();
       return (cat === "all" || it.category_id === cat) && (!text || name.includes(text) || desc.includes(text));
     });
-  }, [visibleItems, cat, q, lang]);
+  }, [allSortedItems, cat, q, lang]);
 
-  const featured = useMemo(() => {
-    const discounted = visibleItems.filter((it: Item) => discountPercent(it) > 0 && it.is_available !== false);
-    const withPhotos = visibleItems.filter((it: Item) => !imageIsPlaceholder(it.image_url) && it.is_available !== false);
-    const pool = [...discounted, ...withPhotos, ...visibleItems].filter((it, index, arr) => arr.findIndex((x) => x.id === it.id) === index);
-    return pool.slice(0, 6);
-  }, [visibleItems]);
+  const signatureItems = useMemo(() => {
+    const candidates = allSortedItems.filter((it) => !isAddOnCategory(categoryMap.get(it.category_id)) && it.is_available !== false);
+    const withImages = candidates.filter((it) => it.image_url && !String(it.image_url).includes("/images/items/"));
+    const source = withImages.length >= 4 ? withImages : candidates;
+    return source.slice(0, 8);
+  }, [allSortedItems, categoryMap]);
+
+  const addonCategories = useMemo(() => sortedCategories.filter(isAddOnCategory), [sortedCategories]);
+  const foodCategories = useMemo(() => sortedCategories.filter((c) => !isAddOnCategory(c)), [sortedCategories]);
 
   function add(it: Item) {
     setCart((c) => {
@@ -109,164 +172,193 @@ export default function MenuPage() {
 
   if (!data) {
     return (
-      <main className="lux-page loading-screen">
-        <div className="lux-loader"><span /> Loading La Cha Cha</div>
+      <main className="luxury-site loading-screen">
+        <div className="ambient ambient-one" />
+        <div className="ambient ambient-two" />
+        <div className="loader-card"><span /> Loading La Cha Cha...</div>
       </main>
     );
   }
 
   const restaurantName = lang === "ar" ? s.name_ar || s.name_en || "La Cha Cha" : s.name_en || "La Cha Cha";
-  const welcome = lang === "ar" ? s.welcome_ar || "قائمة رقمية فاخرة، تصفح سريع، وطلب مباشر." : s.welcome_en || "A premium digital menu crafted for cravings, speed, and effortless ordering.";
-  const heroImage = s.hero_image_url || "/images/hero-banner.png";
+  const welcome = lang === "ar" ? s.welcome_ar || "مطعم فاخر بتجربة رقمية حديثة وطلب سريع." : s.welcome_en || "A luxury digital menu designed to showcase quality, flavor, and a refined ordering experience.";
+  const currentSlide = heroSlides[slide % heroSlides.length] || BUILT_IN_SLIDES[0];
 
   return (
-    <main className={`lux-page ${dir}`} style={{ ["--red" as any]: s.primary_color || "#d20a1e", ["--dark" as any]: s.secondary_color || "#110509", ["--hero-bg" as any]: `url(${heroImage})` }}>
+    <main className={`luxury-site ${dir}`} style={{ ["--brand-red" as any]: s.primary_color || "#d60822", ["--brand-dark" as any]: s.secondary_color || "#120508" }}>
+      <div className="grain" />
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
+
       <section className="lux-hero">
-        <div className="hero-bg" />
-        <div className="hero-noise" />
+        <div className="hero-slider" aria-hidden="true">
+          {heroSlides.map((img, index) => (
+            <div key={`${img}-${index}`} className={`hero-slide ${index === slide % heroSlides.length ? "active" : ""}`} style={{ backgroundImage: `url(${img})` }} />
+          ))}
+        </div>
+        <div className="hero-shade" />
+
         <nav className="lux-nav">
-          <div className="lux-brand">
-            {s.logo_url ? <img src={s.logo_url} alt="Logo" /> : <strong>LC</strong>}
+          <div className="brand-lockup">
+            {s.logo_url ? <img src={s.logo_url} className="lux-logo" alt="Logo" /> : <div className="lux-logo text-logo">LC</div>}
             <div>
-              <span>{lang === "ar" ? "منيو رقمي فاخر" : "Premium Digital Menu"}</span>
-              <b>{restaurantName}</b>
+              <span className="eyebrow">Luxury Digital Menu</span>
+              <h1>{restaurantName}</h1>
             </div>
           </div>
-          <div className="lux-actions">
-            <button onClick={() => setLang(lang === "en" ? "ar" : "en")}>{lang === "en" ? "العربية" : "English"}</button>
-            {s.google_maps_url && <a href={s.google_maps_url} target="_blank">Maps</a>}
+          <div className="nav-cluster">
+            <button className="ghost-pill" onClick={() => setLang(lang === "en" ? "ar" : "en")}>{lang === "en" ? "العربية" : "English"}</button>
+            {s.google_maps_url && <a className="ghost-pill" target="_blank" href={s.google_maps_url}>Location</a>}
           </div>
         </nav>
 
-        <div className="hero-inner">
-          <div className="hero-text">
-            <div className="hero-kicker"><span className="pulse" /> {s.opening_hours || "00:00 ~ 23:59"}</div>
-            <h1>{lang === "ar" ? "نكهات مميزة بتجربة طلب فاخرة" : "Food that looks irresistible from the first glance"}</h1>
+        <div className="hero-grid">
+          <div className="hero-message">
+            <span className="open-pill"><span /> {s.opening_hours || "00:00 ~ 23:59"}</span>
+            <h2>{lang === "ar" ? "فخامة الطعم تبدأ من أول نظرة" : "A premium dining experience from the first look"}</h2>
             <p>{welcome}</p>
-            <div className="hero-cta-row">
-              <a href="#menu" className="primary-cta">{lang === "ar" ? "تصفح المنيو" : "Explore Menu"}</a>
-              <button className="secondary-cta" onClick={() => setCheckout(true)} disabled={cart.length === 0}>{lang === "ar" ? "سلة الطلب" : "My Order"}</button>
+            <div className="hero-actions">
+              <a href="#menu" className="primary-cta">{lang === "ar" ? "استعرض المنيو" : "Explore menu"}</a>
+              <button className="secondary-cta" onClick={() => setCheckout(true)} disabled={!cart.length}>{lang === "ar" ? "عرض الطلب" : "View order"}</button>
             </div>
           </div>
 
-          <div className="hero-glass-card">
-            <div className="glass-title">
-              <span>{lang === "ar" ? "بحث سريع" : "Quick Search"}</span>
-              <b>{data.items.length} {lang === "ar" ? "منتج" : "items"}</b>
+          <div className="search-card">
+            <span className="eyebrow dark">Smart Search</span>
+            <input placeholder={lang === "ar" ? "ابحث: طاجين، برجر، باستا، قهوة" : "Search: tajine, burger, pasta, coffee"} value={q} onChange={(e) => setQ(e.target.value)} />
+            <div className="mini-stats">
+              <div><strong>{foodCategories.length}</strong><small>{lang === "ar" ? "أقسام الطعام" : "Food groups"}</small></div>
+              <div><strong>{data.items.length}</strong><small>{lang === "ar" ? "عنصر" : "Items"}</small></div>
+              <div><strong>AED</strong><small>{lang === "ar" ? "العملة" : "Currency"}</small></div>
             </div>
-            <input placeholder={lang === "ar" ? "ابحث: برجر، باستا، قهوة" : "Search: burger, pasta, coffee"} value={q} onChange={(e) => setQ(e.target.value)} />
-            <div className="glass-tags"><span>Pickup</span><span>Dine-in</span><span>Delivery</span></div>
           </div>
         </div>
+
+        <div className="slide-dots">
+          {heroSlides.map((_, index) => <button key={index} className={index === slide % heroSlides.length ? "active" : ""} onClick={() => setSlide(index)} aria-label={`Slide ${index + 1}`} />)}
+        </div>
       </section>
 
-      <section className="experience-bar">
-        <div><strong>{data.categories.length}</strong><span>{lang === "ar" ? "تصنيف" : "Categories"}</span></div>
-        <div><strong>{visibleItems.length}</strong><span>{lang === "ar" ? "منتج" : "Menu items"}</span></div>
-        <div><strong>AED</strong><span>{lang === "ar" ? "أسعار واضحة" : "Clear prices"}</span></div>
-        <div><strong>WhatsApp</strong><span>{lang === "ar" ? "طلب مباشر" : "Fast ordering"}</span></div>
+      <section className="quality-band">
+        <div><strong>{lang === "ar" ? "صور فاخرة" : "Luxury visuals"}</strong><span>{lang === "ar" ? "سلايد شو متحرك بجودة عالية" : "Animated premium hero slideshow"}</span></div>
+        <div><strong>{lang === "ar" ? "طلب سريع" : "Fast ordering"}</strong><span>{lang === "ar" ? "واتساب للطلبات والاستلام" : "WhatsApp checkout for pickup"}</span></div>
+        <div><strong>{lang === "ar" ? "ترتيب ذكي" : "Smart sorting"}</strong><span>{lang === "ar" ? "الأكل أولاً ثم الإضافات والمشروبات" : "Food first, extras and drinks last"}</span></div>
       </section>
 
-      <section className="menu-wrap" id="menu">
-        <div className="section-heading">
-          <span>{lang === "ar" ? "اختيارك اليوم" : "Choose your craving"}</span>
-          <h2>{lang === "ar" ? "منيو لا تشا تشا" : "La Cha Cha Menu"}</h2>
+      {signatureItems.length > 0 && (
+        <section className="signature-section">
+          <div className="section-heading">
+            <span className="eyebrow dark">Chef Selection</span>
+            <h2>{lang === "ar" ? "اختيارات مميزة" : "Signature picks"}</h2>
+            <p>{lang === "ar" ? "أول ما يراه العميل يجب أن يعكس جودة وفخامة المطعم." : "A curated first impression that reflects the restaurant’s quality and premium taste."}</p>
+          </div>
+          <div className="signature-row">
+            {signatureItems.map((it) => (
+              <button key={it.id} className="signature-card" onClick={() => add(it)}>
+                <div>
+                  <span>{itemName(it, lang)}</span>
+                  <strong>AED {finalPrice(it).toFixed(2)}</strong>
+                </div>
+                <em>+</em>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section id="menu" className="menu-shell">
+        <div className="section-heading compact">
+          <span className="eyebrow dark">Menu Collection</span>
+          <h2>{lang === "ar" ? "القائمة" : "Browse the menu"}</h2>
         </div>
 
-        <div className="lux-category-scroll">
-          <button className={cat === "all" ? "active" : ""} onClick={() => setCat("all")}>{lang === "ar" ? "الكل" : "All"}</button>
-          {data.categories.map((c) => (
-            <button key={c.id} className={cat === c.id ? "active" : ""} onClick={() => setCat(c.id)}>
-              {lang === "ar" ? c.name_ar || c.name_en : c.name_en}
-            </button>
+        <div className="category-dock">
+          <button className={`category-pill ${cat === "all" ? "active" : ""}`} onClick={() => setCat("all")}>{lang === "ar" ? "الكل" : "All"}</button>
+          {foodCategories.map((c) => (
+            <button key={c.id} className={`category-pill ${cat === c.id ? "active" : ""}`} onClick={() => setCat(c.id)}>{lang === "ar" ? c.name_ar || c.name_en : c.name_en}</button>
+          ))}
+          {addonCategories.length > 0 && <span className="dock-divider">{lang === "ar" ? "الإضافات والمشروبات" : "Extras & drinks"}</span>}
+          {addonCategories.map((c) => (
+            <button key={c.id} className={`category-pill addon ${cat === c.id ? "active" : ""}`} onClick={() => setCat(c.id)}>{lang === "ar" ? c.name_ar || c.name_en : c.name_en}</button>
           ))}
         </div>
 
-        {featured.length > 0 && cat === "all" && !q.trim() && (
-          <div className="featured-row">
-            {featured.map((it) => {
-              const discount = discountPercent(it);
-              return (
-                <button className="featured-tile" key={it.id} onClick={() => add(it)}>
-                  <span>{discount > 0 ? `-${discount}%` : "Popular"}</span>
-                  <b>{itemName(it, lang)}</b>
-                  <em>AED {finalPrice(it).toFixed(2)}</em>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        <div className="lux-grid">
+        <div className="menu-grid">
           {items.map((it) => {
+            const imageLooksLikeSeedCrop = !it.image_url || String(it.image_url).includes("/images/items/");
             const discount = discountPercent(it);
-            const hasPhoto = !imageIsPlaceholder(it.image_url);
+            const category = categoryMap.get(it.category_id);
             return (
-              <article className={`lux-card ${!it.is_available ? "not-available" : ""}`} key={it.id}>
-                <div className="photo-box">
-                  {hasPhoto ? (
-                    <>
-                      <img className="photo-blur" src={it.image_url} alt="" aria-hidden="true" />
-                      <img className="photo-main" src={it.image_url} alt={itemName(it, lang)} />
-                    </>
+              <article key={it.id} className={`menu-card ${!it.is_available ? "sold" : ""}`}>
+                <div className="image-stage">
+                  {it.image_url && !imageLooksLikeSeedCrop ? (
+                    <div className="smart-image">
+                      <img className="smart-image-bg" src={it.image_url} alt="" aria-hidden="true" />
+                      <img className="smart-image-main" src={it.image_url} alt={itemName(it, lang)} />
+                    </div>
                   ) : (
-                    <div className="photo-soon"><b>Photo soon</b><span>Upload real product photo</span></div>
+                    <div className="image-soon">
+                      <span>{lang === "ar" ? "صورة قريباً" : "Photo soon"}</span>
+                      <small>{lang === "ar" ? "ارفع صورة أصلية من الأدمن" : "Upload real photo from admin"}</small>
+                    </div>
                   )}
-                  {discount > 0 && <span className="deal-badge">-{discount}%</span>}
+                  {discount > 0 && <div className="discount-ribbon">-{discount}%</div>}
                 </div>
-                <div className="lux-card-body">
-                  <div className="mini-row">
-                    {discount > 0 && <span>Special Offer</span>}
-                    {it.label && <span>{it.label}</span>}
-                    {!it.is_available && <span>Sold out</span>}
+                <div className="menu-card-body">
+                  <div className="card-meta">
+                    <span>{category ? (lang === "ar" ? category.name_ar || category.name_en : category.name_en) : "La Cha Cha"}</span>
+                    {discount > 0 && <b>Discount</b>}
                   </div>
                   <h3>{itemName(it, lang)}</h3>
                   <p>{itemDesc(it, lang)}</p>
-                  <div className="price-action">
-                    <div className="price">
-                      {discount > 0 && <small>AED {Number(it.price).toFixed(2)}</small>}
+                  <div className="action-row">
+                    <div className="price-stack">
+                      {discount > 0 && <span className="old-price">AED {Number(it.price).toFixed(2)}</span>}
                       <strong>AED {finalPrice(it).toFixed(2)}</strong>
                     </div>
-                    {it.is_available ? <button onClick={() => add(it)}>{lang === "ar" ? "إضافة" : "Add"}</button> : <em>Unavailable</em>}
+                    {it.is_available ? <button className="add-button" onClick={() => add(it)}>{lang === "ar" ? "إضافة" : "Add"}</button> : <span className="sold-text">Unavailable</span>}
                   </div>
                 </div>
               </article>
             );
           })}
         </div>
-
-        {items.length === 0 && <div className="empty-lux">{lang === "ar" ? "لا توجد نتائج" : "No matching items found"}</div>}
       </section>
 
       {cart.length > 0 && (
-        <section className="lux-cart-bar">
-          <div><span>{lang === "ar" ? "سلة الطلب" : "Your order"}</span><strong>{cart.length} items • AED {total.toFixed(2)}</strong></div>
-          <button onClick={() => setCheckout(true)}>{lang === "ar" ? "إكمال الطلب" : "Checkout"}</button>
+        <section className="floating-cart">
+          <div>
+            <span>{lang === "ar" ? "سلة الطلب" : "Your order"}</span>
+            <strong>{cart.reduce((n, x) => n + x.qty, 0)} items • AED {total.toFixed(2)}</strong>
+          </div>
+          <button className="checkout-button" onClick={() => setCheckout(true)}>{lang === "ar" ? "إتمام الطلب" : "Checkout"}</button>
         </section>
       )}
 
       {checkout && (
-        <div className="lux-modal">
-          <div className="lux-modal-card">
-            <button className="x" onClick={() => setCheckout(false)}>×</button>
-            <h2>{lang === "ar" ? "إتمام الطلب" : "Complete your order"}</h2>
-            <div className="cart-list">
+        <div className="modal" onClick={() => setCheckout(false)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <h2>{lang === "ar" ? "إتمام الطلب" : "Checkout"}</h2>
+            <div className="cart-lines">
               {cart.map((x) => (
-                <div key={x.id} className="cart-line">
-                  <div><b>{itemName(x, lang)}</b><span>AED {finalPrice(x).toFixed(2)}</span></div>
-                  <div className="qty"><button onClick={() => changeQty(x.id, -1)}>-</button><strong>{x.qty}</strong><button onClick={() => changeQty(x.id, 1)}>+</button></div>
+                <div className="cart-line" key={x.id}>
+                  <div><strong>{itemName(x, lang)}</strong><span>AED {finalPrice(x).toFixed(2)}</span></div>
+                  <div className="qty-controls"><button onClick={() => changeQty(x.id, -1)}>-</button><b>{x.qty}</b><button onClick={() => changeQty(x.id, 1)}>+</button></div>
                 </div>
               ))}
             </div>
-            <div className="checkout-form">
-              <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}><option value="pickup">Pickup</option><option value="dinein">Dine-in</option><option value="delivery">Delivery</option></select>
-              <input placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-              <input placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-              {form.type === "dinein" && <input placeholder="Table number" value={form.table} onChange={(e) => setForm({ ...form, table: e.target.value })} />}
-              {form.type !== "delivery" && <select value={form.payment} onChange={(e) => setForm({ ...form, payment: e.target.value })}><option>Cash</option><option>Card</option></select>}
-              <textarea placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+            <div className="form">
+              <select className="input" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}><option value="pickup">Pickup</option><option value="dinein">Dine-in</option><option value="delivery">Delivery app</option></select>
+              <input className="input" placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+              <input className="input" placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+              {form.type === "dinein" && <input className="input" placeholder="Table number" value={form.table} onChange={(e) => setForm({ ...form, table: e.target.value })} />}
+              {form.type !== "delivery" && <select className="input" value={form.payment} onChange={(e) => setForm({ ...form, payment: e.target.value })}><option>Cash</option><option>Card</option></select>}
+              <textarea className="input" placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
             </div>
-            <button className="send-order" disabled={cart.length === 0} onClick={whatsapp}>{lang === "ar" ? "إرسال عبر واتساب" : "Send order on WhatsApp"} • AED {total.toFixed(2)}</button>
+            <div className="modal-actions">
+              <button className="checkout-button" onClick={whatsapp}>{lang === "ar" ? "إرسال عبر واتساب" : "Send WhatsApp order"}</button>
+              <button className="cancel-button" onClick={() => setCheckout(false)}>Close</button>
+            </div>
           </div>
         </div>
       )}

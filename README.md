@@ -1,44 +1,55 @@
+# La Cha Cha Luxury Digital Menu
 
-# La Cha Cha Digital Menu App
+Ready for Netlify + Supabase.
 
-Professional bilingual restaurant menu app with a dynamic admin panel.
+## What is included
+- Luxury restaurant homepage design.
+- Animated hero slideshow with high-quality premium food banners.
+- Smart category sorting: main food first, then desserts, coffee, beverages, sauces, and add-ons last.
+- Menu cards with discount display.
+- WhatsApp ordering.
+- Admin panel for settings, logo/banner upload, categories, items, discount, and users.
+- Smart image upload normalization for item photos.
 
-## Corrected data included
-This package includes corrected seed data extracted from the provided menu screenshots:
-- Arabic + English categories
-- Arabic + English item names
-- AED prices
-- Cropped food images saved in `public/images/items/`
-- Review file: `extracted-menu-review.csv`
-- Supabase seed: `supabase/schema.sql`
+## Netlify build settings
+Base directory: blank
+Package directory: Not set
+Build command:
 
-## Default admin login
-- Username: `admin`
-- Password: `123`
+```bash
+npm install --legacy-peer-deps && npm run build
+```
 
-Change this after first login before publishing publicly.
+Publish directory:
 
-## Admin can change
-Restaurant name, logo, opening hours, phone, WhatsApp, address, Google Maps link, social media, delivery links, colors, categories, menu items, prices, images, sold-out status, visibility, users and roles.
+```bash
+.next
+```
 
-## Deploy summary
-1. Create Supabase project.
-2. Open Supabase SQL Editor and run `supabase/schema.sql`.
-3. Upload this project to GitHub.
-4. Connect GitHub to Vercel.
-5. Add environment variables from `.env.example`.
-6. Deploy.
+## Required environment variables
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+- APP_JWT_SECRET
+- NODE_VERSION = 20
+- NPM_FLAGS = --legacy-peer-deps
 
-## Update: Hero Banner + Discount System
+## Supabase
+Run the SQL files in the `supabase` folder if this is a new database.
+Create public storage bucket:
 
-This package includes:
-- A new premium homepage background banner at `public/images/hero-banner.png`.
-- A new Admin tab called **DISCOUNT**.
-- Discount can be applied to all items or selected items using checkboxes.
-- Discounted items show old price + new price on the customer menu.
+```text
+menu-images
+```
 
-If your Supabase tables already exist, run this file once in Supabase SQL Editor before using discounts:
+## Admin
+/admin
 
-`supabase/discount-and-hero-migration.sql`
+Default test login:
 
-Choose **Run without RLS** if Supabase shows the warning.
+```text
+admin
+123
+```
+
+Change password before public launch.
