@@ -232,3 +232,8 @@ insert into menu_items (category_id, name_en, name_ar, price, image_url, sort_or
 insert into menu_items (category_id, name_en, name_ar, price, image_url, sort_order, is_available, is_visible) values ('d9fb03b0-3a1f-49a2-b6af-24178fd91934', 'Iced Tiramissu Latte', 'آيسد تيراميسو لاتيه', 35.00, null, 6, true, true);
 insert into menu_items (category_id, name_en, name_ar, price, image_url, sort_order, is_available, is_visible) values ('d9fb03b0-3a1f-49a2-b6af-24178fd91934', 'Cappuccino', 'Cappuccino', 19.00, null, 7, true, true);
 insert into menu_items (category_id, name_en, name_ar, price, image_url, sort_order, is_available, is_visible) values ('d9fb03b0-3a1f-49a2-b6af-24178fd91934', 'Americano Classic', 'أمريكانو كلاسيك', 16.00, null, 8, true, true);
+
+-- Extra fields for homepage hero background and discount system
+alter table settings add column if not exists hero_image_url text;
+alter table menu_items add column if not exists discount_percent numeric(5,2) default 0;
+update menu_items set discount_percent = 0 where discount_percent is null;

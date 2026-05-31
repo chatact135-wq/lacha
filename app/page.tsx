@@ -13,6 +13,17 @@ function itemDesc(it: Item, lang: "en" | "ar") {
   return (lang === "ar" ? it.description_ar || it.description_en : it.description_en || it.description_ar) || "Freshly prepared by La Cha Cha.";
 }
 
+function discountPercent(it: Item) {
+  const value = Number(it.discount_percent || 0);
+  return Number.isFinite(value) ? Math.max(0, Math.min(100, value)) : 0;
+}
+
+function finalPrice(it: Item) {
+  const price = Number(it.price || 0);
+  const discount = discountPercent(it);
+  return discount > 0 ? price * (1 - discount / 100) : price;
+}
+
 export default function MenuPage() {
   const [data, setData] = useState<{ settings: Settings; categories: Category[]; items: Item[]; deliveryLinks: any[] } | null>(null);
   const [lang, setLang] = useState<"en" | "ar">("en");
@@ -56,7 +67,7 @@ export default function MenuPage() {
     setCart((c) => c.map((x) => (x.id === id ? { ...x, qty: Math.max(0, x.qty + delta) } : x)).filter((x) => x.qty > 0));
   }
 
-  const total = cart.reduce((sum, x) => sum + Number(x.price || 0) * x.qty, 0);
+  const total = cart.reduce((sum, x) => sum + finalPrice(x) * x.qty, 0);
 
   function whatsapp() {
     const title = lang === "ar" ? "طلب جديد من القائمة الرقمية" : "New order from digital menu";
@@ -70,7 +81,11 @@ export default function MenuPage() {
     if (form.type === "dinein") lines.push(`Table: ${form.table}`);
     if (form.type !== "delivery") lines.push(`Payment: ${form.payment}`);
     lines.push("", "Items:");
-    cart.forEach((x) => lines.push(`${x.qty} x ${x.name_en} - AED ${Number(x.price).toFixed(2)}${x.note ? ` | Note: ${x.note}` : ""}`));
+    cart.forEach((x) => {
+      const discount = discountPercent(x);
+      const price = finalPrice(x);
+      lines.push(`${x.qty} x ${x.name_en} - AED ${price.toFixed(2)}${discount > 0 ? ` (${discount}% discount)` : ""}${x.note ? ` | Note: ${x.note}` : ""}`);
+    });
     lines.push("", `Total: AED ${total.toFixed(2)}`);
     if (form.notes) lines.push(`General notes: ${form.notes}`);
     const raw = (s.whatsapp_number || "+97137227116").replace(/[^0-9]/g, "");
@@ -89,6 +104,7 @@ export default function MenuPage() {
 
   const restaurantName = lang === "ar" ? s.name_ar || s.name_en || "La Cha Cha" : s.name_en || "La Cha Cha";
   const welcome = lang === "ar" ? s.welcome_ar || "قائمة رقمية بتصميم حديث وتجربة طلب سهلة." : s.welcome_en || "A premium digital menu experience crafted for fast browsing and easy ordering.";
+  const heroImage = s.hero_image_url || "/images/hero-banner.png";
 
   return (
     <main
@@ -99,7 +115,8 @@ export default function MenuPage() {
       <div className="orb orb-two" />
       <div className="orb orb-three" />
 
-      <section className="neo-hero">
+      <section className="neo-hero" style={{ ["--hero-bg" as any]: `url(${heroImage})` }}>
+        <div className="hero-overlay" />
         <nav className="topbar">
           <div className="identity">
             {s.logo_url ? <img src={s.logo_url} className="brand-logo" alt="Logo" /> : <div className="brand-logo text-logo">LC</div>}
@@ -150,7 +167,11 @@ export default function MenuPage() {
           {featured.map((it) => (
             <button key={it.id} className="spotlight-card" onClick={() => add(it)}>
               <span>{itemName(it, lang)}</span>
-              <strong>AED {Number(it.price).toFixed(2)}</strong>
+              {discountPercent(it) > 0 ? (
+                <strong><small>AED {Number(it.price).toFixed(2)}</small> AED {finalPrice(it).toFixed(2)}</strong>
+              ) : (
+                <strong>AED {Number(it.price).toFixed(2)}</strong>
+              )}
             </button>
           ))}
         </section>
@@ -159,8 +180,9 @@ export default function MenuPage() {
       <section className="menu-grid">
         {items.map((it) => {
           const imageLooksLikeSeedCrop = !it.image_url || String(it.image_url).includes("/images/items/");
+          const discount = discountPercent(it);
           return (
-            <article key={it.id} className={`menu-card ${!it.is_available ? "sold" : ""}`}>
+            <article key={it.id} className={`menu-card ${!it.is_available ? "sold" : ""}`}> 
               <div className="image-stage">
                 {it.image_url && !imageLooksLikeSeedCrop ? (
                   <img src={it.image_url} alt={itemName(it, lang)} />
@@ -170,16 +192,21 @@ export default function MenuPage() {
                     <small>{lang === "ar" ? "ارفع صورة أصلية من الأدمن" : "Upload real photo from admin"}</small>
                   </div>
                 )}
+                {discount > 0 && <div className="discount-ribbon">-{discount}%</div>}
               </div>
               <div className="menu-card-body">
                 <div className="card-topline">
                   {it.label && <span className="small-badge">{it.label}</span>}
+                  {discount > 0 && <span className="small-badge discount-badge">Discount</span>}
                   {!it.is_available && <span className="small-badge danger">Sold out</span>}
                 </div>
                 <h3>{itemName(it, lang)}</h3>
                 <p>{itemDesc(it, lang)}</p>
                 <div className="action-row">
-                  <strong>AED {Number(it.price).toFixed(2)}</strong>
+                  <div className="price-stack">
+                    {discount > 0 && <span className="old-price">AED {Number(it.price).toFixed(2)}</span>}
+                    <strong>AED {finalPrice(it).toFixed(2)}</strong>
+                  </div>
                   {it.is_available ? <button className="add-button" onClick={() => add(it)}>{lang === "ar" ? "إضافة" : "Add"}</button> : <span className="sold-text">Unavailable</span>}
                 </div>
               </div>
@@ -217,7 +244,7 @@ export default function MenuPage() {
               {form.type === "dinein" && <input className="input" placeholder="Table number" value={form.table} onChange={(e) => setForm({ ...form, table: e.target.value })} />}
               {form.type !== "delivery" && <select className="input" value={form.payment} onChange={(e) => setForm({ ...form, payment: e.target.value })}><option>Cash</option><option>Card</option></select>}
               <textarea className="input" placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
-              <div className="modal-actions"><button className="checkout-button" onClick={whatsapp}>Send on WhatsApp</button><button className="cancel-button" onClick={() => setCheckout(false)}>Cancel</button></div>
+              <div className="modal-actions"><button className="checkout-button" onClick={whatsapp}>Send WhatsApp</button><button className="cancel-button" onClick={() => setCheckout(false)}>Close</button></div>
             </div>
           </div>
         </div>

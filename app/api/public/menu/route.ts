@@ -1,14 +1,13 @@
+import { NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-import { NextResponse } from "next/server";
-import { supabaseAdmin } from "../../../../lib/supabase";
-
-export async function GET() {
-  const [{ data: settings }, { data: categories }, { data: items }, { data: deliveryLinks }] = await Promise.all([
-    supabaseAdmin.from("settings").select("*").eq("id", 1).single(),
-    supabaseAdmin.from("categories").select("*").eq("is_visible", true).order("sort_order"),
-    supabaseAdmin.from("menu_items").select("*").eq("is_visible", true).order("sort_order"),
-    supabaseAdmin.from("delivery_links").select("*").eq("is_visible", true).order("sort_order")
+export async function GET(){
+  const [settings, categories, items, deliveryLinks] = await Promise.all([
+    supabaseAdmin.from("settings").select("*").eq("id",1).maybeSingle(),
+    supabaseAdmin.from("categories").select("*").eq("is_visible",true).order("sort_order",{ascending:true}),
+    supabaseAdmin.from("menu_items").select("*").eq("is_visible",true).order("sort_order",{ascending:true}),
+    supabaseAdmin.from("delivery_links").select("*").eq("is_visible",true).order("sort_order",{ascending:true})
   ]);
-  return NextResponse.json({ settings, categories: categories || [], items: items || [], deliveryLinks: deliveryLinks || [] });
+  return NextResponse.json({ settings: settings.data || {}, categories: categories.data || [], items: items.data || [], deliveryLinks: deliveryLinks.data || [] });
 }

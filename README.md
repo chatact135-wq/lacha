@@ -28,3 +28,17 @@ Restaurant name, logo, opening hours, phone, WhatsApp, address, Google Maps link
 4. Connect GitHub to Vercel.
 5. Add environment variables from `.env.example`.
 6. Deploy.
+
+## Update: Hero Banner + Discount System
+
+This package includes:
+- A new premium homepage background banner at `public/images/hero-banner.png`.
+- A new Admin tab called **DISCOUNT**.
+- Discount can be applied to all items or selected items using checkboxes.
+- Discounted items show old price + new price on the customer menu.
+
+If your Supabase tables already exist, run this file once in Supabase SQL Editor before using discounts:
+
+`supabase/discount-and-hero-migration.sql`
+
+Choose **Run without RLS** if Supabase shows the warning.
