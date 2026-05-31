@@ -185,7 +185,10 @@ export default function MenuPage() {
             <article key={it.id} className={`menu-card ${!it.is_available ? "sold" : ""}`}> 
               <div className="image-stage">
                 {it.image_url && !imageLooksLikeSeedCrop ? (
-                  <img src={it.image_url} alt={itemName(it, lang)} />
+                  <div className="smart-image">
+                    <img className="smart-image-bg" src={it.image_url} alt="" aria-hidden="true" />
+                    <img className="smart-image-main" src={it.image_url} alt={itemName(it, lang)} />
+                  </div>
                 ) : (
                   <div className="image-soon">
                     <span>{lang === "ar" ? "صورة قريباً" : "Photo soon"}</span>
