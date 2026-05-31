@@ -324,6 +324,7 @@ export default function MenuPage() {
       </section>
 
       <div className="sticky-contact-dock" aria-label="Contact and location shortcuts">
+        <a href={mapsHref} target="_blank" className="dock-action location"><span>⌖</span><b>{lang === "ar" ? "الموقع" : "Location"}</b></a>
         <a href={`tel:${telPhone}`} className="dock-action"><span>☎</span><b>{lang === "ar" ? "اتصال" : "Call"}</b></a>
         <a href={`https://wa.me/${whatsappRaw}`} target="_blank" className="dock-action whatsapp"><span>✆</span><b>WhatsApp</b></a>
       </div>
