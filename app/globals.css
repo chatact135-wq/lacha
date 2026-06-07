@@ -392,3 +392,64 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.rtl{direction:r
   .image-stage{height:255px !important;margin:12px !important}
   .smart-image-main{object-fit:contain !important;padding:0 !important}
 }
+
+
+/* V11 STRICT ORIGINAL PHOTO MODE
+   This is the final override: product images are shown as the full original photo.
+   No crop, no blur, no generated background, no scaling outside the box. */
+.menu-card .image-stage{
+  height:auto !important;
+  aspect-ratio:16/10 !important;
+  margin:14px !important;
+  border-radius:26px !important;
+  background:#fffaf6 !important;
+  border:1px solid rgba(70,25,30,.10) !important;
+  overflow:hidden !important;
+  display:block !important;
+}
+.menu-card .smart-image{
+  position:relative !important;
+  inset:auto !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:#fffaf6 !important;
+  overflow:hidden !important;
+}
+.menu-card .smart-image-bg{
+  display:none !important;
+}
+.menu-card img.smart-image-main{
+  position:relative !important;
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  padding:0 !important;
+  margin:0 !important;
+  transform:none !important;
+  filter:none !important;
+  border-radius:0 !important;
+  background:#fffaf6 !important;
+}
+.menu-card:hover img.smart-image-main{
+  transform:none !important;
+}
+@media(max-width:760px){
+  .menu-card .image-stage{
+    aspect-ratio:16/10 !important;
+    height:auto !important;
+    margin:12px !important;
+    border-radius:24px !important;
+  }
+  .menu-card img.smart-image-main{
+    object-fit:contain !important;
+    padding:0 !important;
+  }
+}
