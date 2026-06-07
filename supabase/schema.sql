@@ -32,6 +32,12 @@ create table settings (
   secondary_color text default '#111111',
   footer_en text default 'La Cha Cha Digital Menu',
   footer_ar text default 'قائمة لا تشا تشا الرقمية',
+  chef_selection_enabled boolean default true,
+  chef_selection_title_en text default 'Signature picks',
+  chef_selection_title_ar text default 'اختيارات مميزة',
+  chef_selection_subtitle_en text default 'A curated first impression that reflects the restaurant’s quality and premium taste.',
+  chef_selection_subtitle_ar text default 'مجموعة مختارة تعكس جودة وفخامة المطعم من أول نظرة.',
+  chef_selection_item_ids text default '',
   updated_at timestamptz default now()
 );
 create table categories (

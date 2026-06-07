@@ -125,10 +125,15 @@ export default function MenuPage() {
 
   const signatureItems = useMemo(() => {
     const candidates = allSortedItems.filter((it) => !isAddOnCategory(categoryMap.get(it.category_id)) && it.is_available !== false);
+    const selectedIds = String(s.chef_selection_item_ids || "").split(",").map((x) => x.trim()).filter(Boolean);
+    if (selectedIds.length) {
+      const selected = selectedIds.map((id) => candidates.find((it) => it.id === id)).filter(Boolean) as Item[];
+      if (selected.length) return selected.slice(0, 12);
+    }
     const withImages = candidates.filter((it) => it.image_url && !String(it.image_url).includes("/images/items/"));
     const source = withImages.length >= 4 ? withImages : candidates;
     return source.slice(0, 8);
-  }, [allSortedItems, categoryMap]);
+  }, [allSortedItems, categoryMap, s.chef_selection_item_ids]);
 
   const addonCategories = useMemo(() => sortedCategories.filter(isAddOnCategory), [sortedCategories]);
   const foodCategories = useMemo(() => sortedCategories.filter((c) => !isAddOnCategory(c)), [sortedCategories]);
@@ -243,12 +248,12 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {signatureItems.length > 0 && (
-        <section className="signature-section">
+      {String(s.chef_selection_enabled ?? true) !== "false" && signatureItems.length > 0 && (
+        <section className="signature-section chef-spotlight">
           <div className="section-heading">
-            <span className="eyebrow dark">Chef Selection</span>
-            <h2>{lang === "ar" ? "اختيارات مميزة" : "Signature picks"}</h2>
-            <p>{lang === "ar" ? "أول ما يراه العميل يجب أن يعكس جودة وفخامة المطعم." : "A curated first impression that reflects the restaurant’s quality and premium taste."}</p>
+            <span className="eyebrow dark">{lang === "ar" ? "اختيارات الشيف" : "Chef Selection"}</span>
+            <h2>{lang === "ar" ? s.chef_selection_title_ar || "اختيارات مميزة" : s.chef_selection_title_en || "Signature picks"}</h2>
+            <p>{lang === "ar" ? s.chef_selection_subtitle_ar || "مجموعة مختارة تعكس جودة وفخامة المطعم من أول نظرة." : s.chef_selection_subtitle_en || "A curated first impression that reflects the restaurant’s quality and premium taste."}</p>
           </div>
           <div className="signature-row">
             {signatureItems.map((it) => (
