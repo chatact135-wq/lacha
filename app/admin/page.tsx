@@ -8,8 +8,14 @@ async function normalizeImageForMenu(file: File, target: 'item' | 'settings' | '
   const isHero = target === 'hero';
   const isLogo = target === 'settings';
 
+  // V10 PRODUCT PHOTO RULE:
+  // Item photos must be uploaded as the original image.
+  // No canvas, no blur, no artificial background, no smart cover.
+  // The customer-facing card will show the complete photo with object-fit: contain.
+  if (target === 'item') return file;
+
   const targetWidth = isHero ? 1920 : isLogo ? 900 : 1600;
-  const targetHeight = isHero ? 1080 : isLogo ? 900 : 900;
+  const targetHeight = isHero ? 1080 : isLogo ? 900 : 1000;
 
   const imageUrl = URL.createObjectURL(file);
   const img = await new Promise<HTMLImageElement>((resolve, reject) => {
@@ -54,17 +60,20 @@ async function normalizeImageForMenu(file: File, target: 'item' | 'settings' | '
     ctx.fillRect(0, 0, targetWidth, targetHeight);
 
     // Draw the real image with object-contain logic. Nothing is cropped.
-    const safePad = 28;
+    const safePad = 26;
     const scale = Math.min((targetWidth - safePad * 2) / img.width, (targetHeight - safePad * 2) / img.height);
     const drawW = img.width * scale;
     const drawH = img.height * scale;
     const x = (targetWidth - drawW) / 2;
-    const y = (targetHeight - drawH) / 2;
+    // Slight upward bias helps keep the plated dish / burger visually centered.
+    const preferredCenterY = targetHeight * 0.46;
+    let y = preferredCenterY - drawH / 2;
+    y = Math.max(safePad, Math.min(y, targetHeight - drawH - safePad));
 
     ctx.save();
-    ctx.shadowColor = 'rgba(0,0,0,.30)';
-    ctx.shadowBlur = 36;
-    ctx.shadowOffsetY = 14;
+    ctx.shadowColor = 'rgba(0,0,0,.32)';
+    ctx.shadowBlur = 40;
+    ctx.shadowOffsetY = 16;
     ctx.drawImage(img, x, y, drawW, drawH);
     ctx.restore();
 
