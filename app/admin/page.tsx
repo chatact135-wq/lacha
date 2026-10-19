@@ -119,7 +119,7 @@ async function normalizeImageForMenu(file: File, target: 'item' | 'settings' | '
 
 
 export default function AdminPage(){
-  const [session,setSession]=useState<Any>(null); const [login,setLogin]=useState({username:"admin",password:"123"}); const [error,setError]=useState("");
+  const [session,setSession]=useState<Any>(null); const [login,setLogin]=useState({username:"admin",password:""}); const [error,setError]=useState("");
   const [tab,setTab]=useState("settings"); const [settings,setSettings]=useState<Any>({}); const [cats,setCats]=useState<Any[]>([]); const [items,setItems]=useState<Any[]>([]); const [users,setUsers]=useState<Any[]>([]);
   const [item,setItem]=useState<Any>(emptyItem); const [cat,setCat]=useState<Any>({name_en:"",name_ar:"",sort_order:0,is_visible:true}); const [newUser,setNewUser]=useState({username:"",password:"",role:"editor"});
   const [discount,setDiscount]=useState({mode:"selected", percent:10, selectedIds:[] as string[]});
