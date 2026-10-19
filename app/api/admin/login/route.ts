@@ -9,7 +9,7 @@ export async function POST(req:Request){
   const { data:user, error } = await supabaseAdmin.from("app_users").select("*").eq("username", username).eq("is_active", true).maybeSingle();
   if(error || !user) return NextResponse.json({ error:"Invalid login" }, { status:401 });
   let ok=false; try { ok = await bcrypt.compare(password || "", user.password_hash || ""); } catch {}
-  if(!ok && username === "admin" && password === "123") ok = true;
+ // if(!ok && username === "admin" && password === "123") ok = true;
   if(!ok) return NextResponse.json({ error:"Invalid login" }, { status:401 });
   const session = { id:user.id, username:user.username, role:user.role };
   const token = await createSession(session);
